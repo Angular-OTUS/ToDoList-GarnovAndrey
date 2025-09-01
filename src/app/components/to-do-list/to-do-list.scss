@@ -1,0 +1,36 @@
+@use '@angular/material' as mat;
+
+.button__add{
+  @include mat.button-overrides((
+    filled-container-color: #06AA71,
+  ));
+}
+.button__add:disabled{
+  background-color: #06AA71;
+  color: #FFFFFF;
+  opacity: 0.5;
+}
+
+.add-task{
+  display: flex;
+  align-items: center;
+  height: 56px;
+  background-color: #242424;
+  border-radius: 20px;
+}
+
+.add-task__input{
+  border: none;
+  outline: none;
+  background-color: #242424;
+  color: #FFFFFF;
+  text-align: left;
+  word-wrap: break-word;
+  padding-left: 8px;
+  margin: 0 10px 0 10px;
+  flex: 1;
+}
+
+
+
+
