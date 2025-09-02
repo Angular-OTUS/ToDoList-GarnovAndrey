@@ -2,7 +2,7 @@
   <ul>
     <li *ngFor="let task of tasks">
       <div class="list-tasks__task">
-        <p>{{task.text}}</p>
+        <span>{{task.text}}</span>
         <button class="button button__delete" matButton="filled" (click)="delTask(task.id)">Удалить</button>
       </div>
     </li>

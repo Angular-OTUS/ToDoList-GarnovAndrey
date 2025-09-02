@@ -5,4 +5,6 @@
   <button class="button button__add" matButton="filled" [disabled]="!newTaskText" (click)="addTask()">Добавить задачу</button>
 </div>
 
+<hr class="dashed-line">
+
 <app-to-do-list-item [tasks]="tasks"></app-to-do-list-item>

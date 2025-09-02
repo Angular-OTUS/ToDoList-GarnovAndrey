@@ -1,6 +1,7 @@
 @use '@angular/material' as mat;
 
 .button__add{
+  font-weight: 600;
   @include mat.button-overrides((
     filled-container-color: #06AA71,
   ));
@@ -14,7 +15,7 @@
 .add-task{
   display: flex;
   align-items: center;
-  height: 56px;
+  height: 73px;
   background-color: #242424;
   border-radius: 20px;
 }
@@ -27,8 +28,19 @@
   text-align: left;
   word-wrap: break-word;
   padding-left: 8px;
-  margin: 0 10px 0 10px;
+  margin: 0 10px;
   flex: 1;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.dashed-line {
+  margin: 24px 0;
+  border: 0;
+  height: 1px;
+  background: transparent;
+  border-top: 2px dashed #242424;
+  width: 100%;
 }
 
 

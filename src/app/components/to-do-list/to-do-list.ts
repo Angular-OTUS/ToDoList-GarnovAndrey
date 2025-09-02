@@ -24,14 +24,17 @@ export class ToDoList {
     {id: 3, text: 'Убраться на рабочем столе или в одной зоне дома'}
   ]
 
-  addTask(){
-    let tasksId = this.tasks.length != 0? this.tasks.map(task => task.id) : [0]
-    let maxIdTask = Math.max.apply(null, tasksId) + 1;
-    let newTask:TasksList  = {id: maxIdTask, text: String(this.newTaskText)};
-    this.tasks.push(newTask);
-    this.newTaskText = undefined;
-    console.log('this.tasks: ', this.tasks);
+  private getTasksId(){
+    const tasksId = this.tasks.length != 0? this.tasks.map(task => task.id) : [0];
+    const maxIdTask = Math.max.apply(null, tasksId) + 1;
+    return maxIdTask;
   }
+
+  addTask(){
+    this.tasks.push({id: this.getTasksId(), text: String(this.newTaskText)});
+    this.newTaskText = undefined;
+  }
+
 
 
 }

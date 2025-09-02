@@ -13,22 +13,26 @@ li{
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 8px 0;
   margin-bottom: 8px;
   background-color: #242424;
   border-radius: 20px;
+  height: 73px;
 }
 
-.list-tasks__task p {
-  padding-left: 8px;
+.list-tasks__task span {
+  padding-left: 38px;
   margin: 0;
   flex: 1;
   text-align: left;
   word-wrap: break-word;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .button__delete{
+  font-weight: 600;
   @include mat.button-overrides((
-    filled-container-color: #c90e0e
+    filled-container-color: #FF5B5B,
+    filled-label-text-color: #411616
   ));
 }
