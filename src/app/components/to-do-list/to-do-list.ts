@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { TasksList } from '../../models/task.model';
 import {MatButtonModule} from '@angular/material/button';
 import { ToDoListItem } from '../to-do-list-item/to-do-list-item';
+import { ButtonComponent } from '../button-component/button-component';
 
 
 @Component({
   selector: 'app-to-do-list',
-  imports: [CommonModule, FormsModule, ToDoListItem, MatButtonModule],
+  imports: [CommonModule, FormsModule, ToDoListItem, MatButtonModule, ButtonComponent],
   templateUrl: './to-do-list.html',
   styleUrl: './to-do-list.scss'
 })
@@ -16,7 +17,8 @@ import { ToDoListItem } from '../to-do-list-item/to-do-list-item';
 
 export class ToDoList {
 
-  newTaskText?: string;
+  public newTaskText?: string;
+  public isLoading: boolean = true;
 
   tasks: TasksList[] = [
     {id: 1, text: 'Составить план на день / пересмотреть приоритеты'},
@@ -24,13 +26,19 @@ export class ToDoList {
     {id: 3, text: 'Убраться на рабочем столе или в одной зоне дома'}
   ]
 
+  ngOnInit(){
+    setTimeout(()=>{
+      this.isLoading = false;
+    }, 500)
+  }
+
   private getTasksId(){
     const tasksId = this.tasks.length != 0? this.tasks.map(task => task.id) : [0];
     const maxIdTask = Math.max.apply(null, tasksId) + 1;
     return maxIdTask;
   }
 
-  addTask(){
+  public addTask(){
     this.tasks.push({id: this.getTasksId(), text: String(this.newTaskText)});
     this.newTaskText = undefined;
   }
