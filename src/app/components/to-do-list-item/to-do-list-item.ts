@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TasksList } from '../../models/task.model';
+import { ITask } from '../../models/task.model';
 import {MatButtonModule} from '@angular/material/button';
 import { ButtonComponent } from '../button-component/button-component';
 
@@ -13,10 +13,10 @@ import { ButtonComponent } from '../button-component/button-component';
 })
 export class ToDoListItem {
 
-  @Input() public tasks:TasksList[] = [];
+  @Input() public tasks:ITask[] = [];
 
 
-  public delTask(idTask: number){
+  public delTask(idTask: number): void{
     let indexToDel = this.tasks.findIndex(task => task.id == idTask);
     this.tasks.splice(indexToDel, 1);
   }
