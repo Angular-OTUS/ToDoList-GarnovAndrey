@@ -1,10 +1,13 @@
 <div class="list-tasks">
   <ul>
-    <li *ngFor="let task of tasks">
-      <div class="list-tasks__task">
-        <span>{{task.text}}</span>
-        <button class="button button__delete" matButton="filled" (click)="delTask(task.id)">Удалить</button>
-      </div>
-    </li>
+    @for(task of tasks; track task.id ){
+      <li>
+        <div class="list-tasks__task">
+          <span>{{task.text}}</span>
+          <app-button-component [title]="'Удалить'" />
+          <!-- <button class="button button__delete" matButton="filled" (click)="delTask(task.id)">Удалить</button> -->
+        </div>
+      </li>
+    }
   </ul>
 </div>

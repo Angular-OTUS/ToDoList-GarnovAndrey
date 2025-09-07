@@ -1,4 +1,4 @@
-export type TasksList = {
+export interface ITask {
   id: number;
   text: string;
 }
