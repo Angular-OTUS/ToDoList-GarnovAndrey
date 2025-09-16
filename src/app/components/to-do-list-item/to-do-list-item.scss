@@ -8,6 +8,24 @@ ul{
 li{
   justify-content: space-between;
 }
+.task-selected{
+  background-color: #343434 !important;
+}
+
+.tasks{
+  display: flex;
+}
+.list-tasks{
+  flex: 1;
+}
+.sidebar{
+  border: none;
+  border-radius: 20px;
+  background-color: #242424;
+  margin: 14px 0px 14px 20px;
+  padding: 10px 20px;
+  flex: 0 0 350px;
+}
 
 .list-tasks__task {
   display: flex;
@@ -17,10 +35,11 @@ li{
   background-color: #242424;
   border-radius: 20px;
   height: 73px;
+  white-space: normal;
 }
 
 .list-tasks__task span {
-  padding-left: 38px;
+  padding: 26.5px 0 26.5px 38px;
   margin: 0;
   flex: 1;
   text-align: left;
