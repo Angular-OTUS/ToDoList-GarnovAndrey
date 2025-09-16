@@ -16,15 +16,12 @@ export class ToDoListItem {
 
   @Input() public tasks:ITask[] = [];
 
-  // public selectedItemId?: number;
   public selectedTask?: ITask | null;
-
 
   public delTask(idTask: number): void{
     let indexToDel = this.tasks.findIndex(task => task.id == idTask);
     this.tasks.splice(indexToDel, 1);
     this.selectedTask = null;
-    console.log(this.selectedTask)
   }
 
   public selectTask(task: ITask): void{

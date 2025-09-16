@@ -8,7 +8,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 
 export class Tooltip {
-
   @Input() tooltipTextHelp: string = '';
   @Input() left: number = 0;
   @Input() top: number = 0;

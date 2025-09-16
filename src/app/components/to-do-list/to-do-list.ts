@@ -43,6 +43,7 @@ export class ToDoList {
   public addTask(): void{
     this.tasks.push({id: this.getTasksId(), text: String(this.newTaskText), description: String(this.newTaskTextDescription)});
     this.newTaskText = undefined;
+    this.newTaskTextDescription = undefined;
   }
 
 }
