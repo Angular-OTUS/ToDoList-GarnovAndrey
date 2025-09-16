@@ -42,14 +42,3 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Arial, "Helvetica Neue", sans-serif; }
-
-.button{
-  margin-right: 12px;
-  border: none;
-  --mat-button-filled-container-height: 49px;
-  --mat-button-filled-container-shape: 8px;
-  --mat-button-filled-label-text-font: Arial;
-  @include mat.button-overrides((
-    filled-label-text-color: #FFFFFF,
-  ));
-}

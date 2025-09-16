@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 
 @Component({
@@ -10,5 +10,14 @@ import {MatButtonModule} from '@angular/material/button';
 export class ButtonComponent {
 
   @Input({required: false}) public title: string = 'Кнопка';
+  // @Input() public type: 'primary' | 'secondary' | 'danger';
+  @Input() public disabledState: boolean = false;
+  @Output() public onClick = new EventEmitter<void>;
+
+  onClickBtn() {
+    if(!this.disabledState){
+      this.onClick.emit();
+    }
+  }
 
 }
