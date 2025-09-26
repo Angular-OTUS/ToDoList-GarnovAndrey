@@ -10,5 +10,6 @@ import { IToast } from '../../models/task.model';
 export class Toast {
   @Input() status?: string = 'Success';
   @Input() message?: string = 'Ваша задача успешно добавлена';
-  public toasts?: IToast;
+  public toasts?: IToast[];
+
 }
