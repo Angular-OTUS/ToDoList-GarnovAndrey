@@ -1,5 +1,11 @@
 export interface ITask {
   id: number;
-  text: string;
+  title: string;
   description?: string;
+}
+
+export interface IToast {
+  id: number;
+  status: 'success' | 'error' | 'info';
+  message: string;
 }
