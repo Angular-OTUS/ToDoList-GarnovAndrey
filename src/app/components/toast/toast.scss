@@ -5,10 +5,26 @@
   z-index: 3;
 }
 
-.toast__body{
+.toast__success{
   width: 300px;
   background-color: #2F5523;
   color: #87D96E;
+  border-radius: 20px;
+  padding: 16px 20px;
+  margin-bottom: 8px;
+}
+.toast__error{
+  width: 300px;
+  background-color: #552323;
+  color: #FF8282;
+  border-radius: 20px;
+  padding: 16px 20px;
+  margin-bottom: 8px;
+}
+.toast__info{
+  width: 300px;
+  background-color: #234255;
+  color: #3BB4FF;
   border-radius: 20px;
   padding: 16px 20px;
   margin-bottom: 8px;

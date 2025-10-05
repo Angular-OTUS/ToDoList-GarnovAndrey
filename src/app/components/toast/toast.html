@@ -1,7 +1,7 @@
 <div class="toast">
-  @for (toast of toasts; track $index) {
-    <div class="toast__body">
-      <span>{{message}}</span>
+  @for (toast of toasts$ | async; track $index) {
+    <div [ngClass]="'toast__'+toast.status">
+      <span>{{toast.message}}</span>
     </div>
   }
 </div>

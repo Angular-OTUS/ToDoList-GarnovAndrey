@@ -1,3 +1,5 @@
+export type TStatus = 'success' | 'error' | 'info';
+
 export interface ITask {
   id: number;
   title: string;
@@ -6,6 +8,6 @@ export interface ITask {
 
 export interface IToast {
   id: number;
-  status: 'success' | 'error' | 'info';
+  status: TStatus;
   message: string;
 }

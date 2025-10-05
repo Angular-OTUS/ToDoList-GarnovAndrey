@@ -8,6 +8,7 @@ import { ButtonComponent } from '../button-component/button-component';
 import { TooltipDirective } from '../../directives';
 import { TasksService } from '../../services/tasks';
 import { Toast } from "../toast/toast";
+import { ToastService } from '../../services/toast';
 
 
 @Component({
@@ -19,6 +20,7 @@ import { Toast } from "../toast/toast";
 
 
 export class ToDoList {
+  constructor(private toastService : ToastService) {}
   private readonly tasksService = inject(TasksService)
 
   public newTaskText?: string;
@@ -40,6 +42,7 @@ export class ToDoList {
     this.tasksService.addTask(String(this.newTaskText), String(this.newTaskTextDescription));
     this.newTaskText = undefined;
     this.newTaskTextDescription = undefined;
+    this.toastService.success('Задача добавлена!')
   }
 
 }
