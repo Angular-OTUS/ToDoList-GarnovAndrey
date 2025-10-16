@@ -1,10 +1,11 @@
+<app-toast></app-toast>
 <div class="tasks">
   <div class="list-tasks">
     <ul>
       @for(task of tasks; track task.id ){
         <li >
           <div class="list-tasks__task" [ngClass]="{'task-selected': selectedTask?.id === task.id}">
-            <span appTooltip="{{task.description}}" (click)="selectTask(task)">{{task.text}}</span>
+            <span appTooltip="{{task.description}}" (click)="selectTask(task)">{{task.title}}</span>
             <app-button-component class="button__delete" appTooltip="Удаляет задачу" [title]="'Удалить'" (onClick)="delTask(task.id)" />
           </div>
         </li>
@@ -12,9 +13,24 @@
     </ul>
   </div>
   @if(selectedTask){
-    <div class="sidebar">
-      <h2>Описание</h2>
-      <span>{{selectedTask.description}}</span>
+    <div class="sidebar" (dblclick)="editTask()">
+      @if(!editTaskFlag){
+        <h2>{{selectedTask.title}}</h2>
+        <h3>Описание</h3>
+        <span>{{selectedTask.description}}</span>
+      }
+      @else {
+        <div class="editform">
+          <div class="edit-fields">
+            <textarea class="edit-task-field" placeholder="Редактировать задачу" cols="30" rows="3" [(ngModel)]="changingTitle"></textarea>
+            <h3>Описание</h3>
+            <textarea class="edit-task-field" [(ngModel)]="changingDescription" cols="30" rows="10"></textarea>
+          </div>
+          <div class="edit-btn">
+            <app-button-component class="button__add" [title]="'Сохранить'" (onClick)="saveChangesTask()" />
+          </div>
+        </div>
+      }
     </div>
   }
 </div>

@@ -31,7 +31,9 @@
 }
 .add-task__description{
   display: flex;
+  scrollbar-color: #9f9f9f #2c2c2c;
 }
+
 
 .task__description{
   color: #FFFFFF;
@@ -45,6 +47,7 @@
   min-height: 30px;
   resize: vertical;
   margin: 10px 30px;
+  resize: none;
 }
 
 .add-task__input{

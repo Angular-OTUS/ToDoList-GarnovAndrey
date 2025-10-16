@@ -55,3 +55,21 @@ li{
     filled-label-text-color: #411616
   ));
 }
+
+.edit-task-field{
+  color: #FFFFFF;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  border: 2px solid #313131;
+  border-radius: 20px;
+  background-color: #242424;
+  min-height: 30px;
+  resize: vertical;
+  scrollbar-color: #9f9f9f #2c2c2c;
+}
+
+.edit-btn{
+  display: flex;
+  justify-content: end;
+}
