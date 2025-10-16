@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ITask } from '../../models/task.model';
 import {MatButtonModule} from '@angular/material/button';
-import { ButtonComponent } from '../button-component/button-component';
+import { ButtonComponent } from '@shared';
 import { TooltipDirective } from '../../directives';
 import { TasksService } from '../../services/tasks';
 import { Toast } from "../toast/toast";

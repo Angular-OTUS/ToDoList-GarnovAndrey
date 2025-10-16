@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ITask } from '../../models/task.model';
 import {MatButtonModule} from '@angular/material/button';
 import { ToDoListItem } from '../to-do-list-item/to-do-list-item';
-import { ButtonComponent } from '../button-component/button-component';
+import { ButtonComponent, LoadingComponent } from '@shared';
 import { TooltipDirective } from '../../directives';
 import { TasksService } from '../../services/tasks';
 import { Toast } from "../toast/toast";
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-to-do-list',
-  imports: [CommonModule, FormsModule, ToDoListItem, MatButtonModule, ButtonComponent, TooltipDirective, Toast],
+  imports: [CommonModule, FormsModule, ToDoListItem, MatButtonModule, ButtonComponent, TooltipDirective, Toast, LoadingComponent],
   templateUrl: './to-do-list.html',
   styleUrl: './to-do-list.scss'
 })

@@ -4,7 +4,7 @@
 <div class="add-task">
   <div class="add-task__title">
     <input class="add-task__input" placeholder="Добавь новую задачу" [(ngModel)]="newTaskText" >
-    <app-button-component appTooltip="Добавляет новую задачу" class="button__add" [title]="'Добавить'" [disabledState]="!newTaskText" (onClick)="addTask()" />
+    <app-button-component appTooltip="Добавляет новую задачу" class="button__add" [disabledState]="!newTaskText" (onClick)="addTask()">Добавить</app-button-component>
   </div>
   @if(newTaskText){
     <div class="add-task__description">
@@ -16,9 +16,7 @@
 
 <hr class="dashed-line">
 @if(isLoading){
-  <div class="box__loader">
-    <span class="loader"></span>
-  </div>
+  <app-loading></app-loading>
 }@else{
     <app-to-do-list-item [tasks]="tasks" />
 }

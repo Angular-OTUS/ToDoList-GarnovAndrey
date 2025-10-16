@@ -9,7 +9,7 @@ import {MatButtonModule} from '@angular/material/button';
 })
 export class ButtonComponent {
 
-  @Input({required: false}) public title: string = 'Кнопка';
+  // @Input({required: false}) public title: string = 'Кнопка';
   // @Input() public type: 'primary' | 'secondary' | 'danger';
   @Input() public disabledState: boolean = false;
   @Output() public onClick = new EventEmitter<void>;

@@ -6,7 +6,7 @@
         <li >
           <div class="list-tasks__task" [ngClass]="{'task-selected': selectedTask?.id === task.id}">
             <span appTooltip="{{task.description}}" (click)="selectTask(task)">{{task.title}}</span>
-            <app-button-component class="button__delete" appTooltip="Удаляет задачу" [title]="'Удалить'" (onClick)="delTask(task.id)" />
+            <app-button-component class="button__delete" appTooltip="Удаляет задачу" (onClick)="delTask(task.id)">Удалить</app-button-component>
           </div>
         </li>
       }
@@ -27,7 +27,7 @@
             <textarea class="edit-task-field" [(ngModel)]="changingDescription" cols="30" rows="10"></textarea>
           </div>
           <div class="edit-btn">
-            <app-button-component class="button__add" [title]="'Сохранить'" (onClick)="saveChangesTask()" />
+            <app-button-component class="button__add" (onClick)="saveChangesTask()">Сохранить</app-button-component>
           </div>
         </div>
       }
