@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ITask } from '../../models/task.model';
@@ -9,6 +9,7 @@ import { TooltipDirective } from '../../directives';
 import { TasksService } from '../../services/tasks';
 import { Toast } from "../toast/toast";
 import { ToastService } from '../../services/toast';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -19,7 +20,7 @@ import { ToastService } from '../../services/toast';
 })
 
 
-export class ToDoList {
+export class ToDoList implements OnInit, OnDestroy {
   constructor(private toastService : ToastService) {}
   private readonly tasksService = inject(TasksService)
 
@@ -28,15 +29,23 @@ export class ToDoList {
   public isLoading: boolean = true;
 
   public tasks: ITask[] = [];
+  private tasksSubscription?: Subscription;
 
   ngOnInit(){
     setTimeout(()=>{
       this.isLoading = !this.isLoading;
     }, 500)
-    this.tasksService.tasks$.subscribe(tasks => {
+    this.tasksSubscription = this.tasksService.tasks$.subscribe(tasks => {
       this.tasks = tasks;
     })
   }
+
+  ngOnDestroy() {
+    if(this.tasksSubscription){
+      this.tasksSubscription.unsubscribe();
+    }
+  }
+
 
   public addTask(): void{
     this.tasksService.addTask(String(this.newTaskText), String(this.newTaskTextDescription));
