@@ -7,9 +7,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class TasksService {
   private tasks: ITask[] = [
-    {id: 1, title: 'Составить план на день / пересмотреть приоритеты', description: 'Подробно описать каждое действие'},
-    {id: 2, title: 'Прочитать 10 отложенных статей по Angular', description: '1 статья: Про хуки, 2 статья: про лучшие практики...'},
-    {id: 3, title: 'Убраться на рабочем столе или в одной зоне дома', description: 'Убрать все лишнее с рабочего стола и освободить рабочую зону для комфортного время препровождения'}
+    {id: 1, title: 'Составить план на день / пересмотреть приоритеты', description: 'Подробно описать каждое действие', status: 'InProgress'},
+    {id: 2, title: 'Прочитать 10 отложенных статей по Angular', description: '1 статья: Про хуки, 2 статья: про лучшие практики...', status: 'Completed'},
+    {id: 3, title: 'Убраться на рабочем столе или в одной зоне дома', description: 'Убрать все лишнее с рабочего стола и освободить рабочую зону для комфортного время препровождения', status: 'InProgress'}
   ]
 
   private todoSubject = new BehaviorSubject<ITask[]>(this.tasks);
@@ -26,7 +26,7 @@ export class TasksService {
   }
 
   public addTask(newTaskText: string, newTaskTextDescription: string): void{
-    this.tasks.push({id: this.getTasksId(), title: newTaskText, description: newTaskTextDescription});
+    this.tasks.push({id: this.getTasksId(), title: newTaskText, description: newTaskTextDescription, status: 'InProgress'});
     this.todoSubject.next([...this.tasks]);
   }
 
@@ -43,5 +43,13 @@ export class TasksService {
     let indexToDel = this.tasks.findIndex(task => task.id == idTask);
     indexToDel != -1? this.tasks.splice(indexToDel, 1) : console.log('Error');
     this.todoSubject.next([...this.tasks]);
+  }
+
+  public CompletingTask(idTask: number, status: boolean ): void{
+    let indexToStatus = this.tasks.findIndex(task => task.id == idTask);
+    if(indexToStatus != -1){
+      this.tasks[indexToStatus].status = status? 'Completed' : 'InProgress';
+      this.todoSubject.next([...this.tasks]);
+    }
   }
 }

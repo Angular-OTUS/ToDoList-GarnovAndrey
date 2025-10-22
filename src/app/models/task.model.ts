@@ -4,6 +4,7 @@ export interface ITask {
   id: number;
   title: string;
   description?: string;
+  status: StatusTask;
 }
 
 export interface IToast {
@@ -11,3 +12,5 @@ export interface IToast {
   status: TStatus;
   message: string;
 }
+
+type StatusTask = 'InProgress' | 'Completed';

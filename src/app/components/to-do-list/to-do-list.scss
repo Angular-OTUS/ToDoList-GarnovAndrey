@@ -1,6 +1,7 @@
 @use '@angular/material' as mat;
 
 .button__add{
+  margin: 12px;
   font-weight: 600;
   @include mat.button-overrides((
     filled-container-color: #06AA71,
@@ -28,6 +29,7 @@
 
 .add-task__title{
   display: flex;
+  justify-content: space-between;
 }
 .add-task__description{
   display: flex;
@@ -46,7 +48,7 @@
   width: 100%;
   min-height: 30px;
   resize: vertical;
-  margin: 10px 30px;
+  margin: 0 12px 12px 12px;
   resize: none;
 }
 

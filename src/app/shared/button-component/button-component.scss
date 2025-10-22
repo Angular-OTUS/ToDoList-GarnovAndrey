@@ -1,7 +1,6 @@
 @use '@angular/material' as mat;
 
 .app-button{
-  margin: 12px;
   border: none;
   font-weight: 600;
   --mat-button-filled-container-height: 49px;
@@ -10,6 +9,7 @@
   @include mat.button-overrides((
     filled-label-text-color: #FFFFFF,
   ));
+  width: 100%;
 }
 
 .button__add{

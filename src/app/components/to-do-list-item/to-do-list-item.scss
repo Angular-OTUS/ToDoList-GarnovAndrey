@@ -23,8 +23,18 @@ li{
   border-radius: 20px;
   background-color: #242424;
   margin: 14px 0px 14px 20px;
-  padding: 10px 20px;
-  flex: 0 0 350px;
+  padding: 12px 20px;
+  width: 40%;
+  height: 100%;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+}
+
+.description-content{
+  height: 100%;
+  margin-bottom: 12px;
 }
 
 .list-tasks__task {
@@ -56,6 +66,14 @@ li{
   ));
 }
 
+// .editform{
+
+// }
+
+.edit-fields{
+  margin-bottom: 12px;
+}
+
 .edit-task-field{
   color: #FFFFFF;
   padding: 10px 20px;
@@ -65,11 +83,28 @@ li{
   border-radius: 20px;
   background-color: #242424;
   min-height: 30px;
+  width: 100%;
+  box-sizing: border-box;
   resize: vertical;
   scrollbar-color: #9f9f9f #2c2c2c;
 }
 
-.edit-btn{
-  display: flex;
-  justify-content: end;
+.checkbox{
+  appearance: none;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 0.13rem solid #CDCDCD;
+  border-radius: 0.5rem;
+  background-color: #242424;
+  cursor: pointer;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin: 23px;
+}
+
+.checkbox:checked{
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+    background-image: url('../../../assets/check-mark.svg') ;
+    background-repeat: no-repeat;
+    background-position: center;
 }

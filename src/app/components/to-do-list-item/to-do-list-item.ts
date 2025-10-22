@@ -55,4 +55,9 @@ export class ToDoListItem {
       this.toastService.success('Задача обновлена!')
     }
   }
+
+  public changeStatusTask(taskId: number, taskStatus: string){
+    let status = taskStatus === 'Completed';
+    this.taskService.CompletingTask(taskId, status);
+  }
 }

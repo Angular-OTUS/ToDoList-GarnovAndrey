@@ -6,7 +6,7 @@
         <li >
           <div class="list-tasks__task" [ngClass]="{'task-selected': selectedTask?.id === task.id}">
             <span appTooltip="{{task.description}}" (click)="selectTask(task)">{{task.title}}</span>
-            <app-button-component class="button__delete" appTooltip="Удаляет задачу" (onClick)="delTask(task.id)">Удалить</app-button-component>
+            <input class="checkbox" type="checkbox" [checked]="task.status === 'Completed'" (change)="changeStatusTask(task.id, task.status)">
           </div>
         </li>
       }
@@ -15,9 +15,12 @@
   @if(selectedTask){
     <div class="sidebar" (dblclick)="editTask()">
       @if(!editTaskFlag){
-        <h2>{{selectedTask.title}}</h2>
-        <h3>Описание</h3>
-        <span>{{selectedTask.description}}</span>
+        <div class="description-content">
+          <h2>{{selectedTask.title}}</h2>
+          <h3>Описание</h3>
+          <span>{{selectedTask.description}}</span>
+        </div>
+        <app-button-component class="button__delete" appTooltip="Удаляет задачу" (onClick)="delTask(selectedTask.id)">Удалить</app-button-component>
       }
       @else {
         <div class="editform">
