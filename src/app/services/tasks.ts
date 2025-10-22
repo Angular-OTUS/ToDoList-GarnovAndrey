@@ -48,7 +48,7 @@ export class TasksService {
   public CompletingTask(idTask: number, status: boolean ): void{
     let indexToStatus = this.tasks.findIndex(task => task.id == idTask);
     if(indexToStatus != -1){
-      this.tasks[indexToStatus].status = status? 'Completed' : 'InProgress';
+      this.tasks[indexToStatus].status = status? 'InProgress' : 'Completed';
       this.todoSubject.next([...this.tasks]);
     }
   }

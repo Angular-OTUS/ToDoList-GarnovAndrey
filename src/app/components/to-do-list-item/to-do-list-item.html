@@ -1,14 +1,22 @@
 <app-toast></app-toast>
+<div class="filter">
+  <app-button-component class="button__filter" [ngClass]="{'button__filter__selected':filter === null}" (onClick)="selectFilter(null)">Все</app-button-component>
+  <app-button-component class="button__filter" [ngClass]="{'button__filter__selected':filter === 'InProgress'}" (onClick)="selectFilter('InProgress')">В работе</app-button-component>
+  <app-button-component class="button__filter" [ngClass]="{'button__filter__selected':filter === 'Completed'}" (onClick)="selectFilter('Completed')">Выполненные</app-button-component>
+</div>
+
 <div class="tasks">
   <div class="list-tasks">
     <ul>
       @for(task of tasks; track task.id ){
-        <li >
-          <div class="list-tasks__task" [ngClass]="{'task-selected': selectedTask?.id === task.id}">
-            <span appTooltip="{{task.description}}" (click)="selectTask(task)">{{task.title}}</span>
-            <input class="checkbox" type="checkbox" [checked]="task.status === 'Completed'" (change)="changeStatusTask(task.id, task.status)">
-          </div>
-        </li>
+        @if(task.status === filter || filter === null){
+          <li >
+            <div class="list-tasks__task" [ngClass]="{'task-selected': selectedTask?.id === task.id}">
+              <span appTooltip="{{task.description}}" (click)="selectTask(task)">{{task.title}}</span>
+              <input class="checkbox" type="checkbox" [checked]="task.status === 'Completed'" (change)="changeStatusTask(task.id, task.status)">
+            </div>
+          </li>
+        }
       }
     </ul>
   </div>

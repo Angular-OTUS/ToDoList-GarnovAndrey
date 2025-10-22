@@ -3,6 +3,7 @@
 .button__add{
   margin: 12px;
   font-weight: 600;
+  --mat-button-filled-container-height: 49px;
   @include mat.button-overrides((
     filled-container-color: #06AA71,
   ));
@@ -75,8 +76,6 @@
   border-top: 2px dashed #242424;
   width: 100%;
 }
-
-
 
 
 

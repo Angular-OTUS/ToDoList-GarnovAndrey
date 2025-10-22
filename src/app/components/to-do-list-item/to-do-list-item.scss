@@ -60,6 +60,7 @@ li{
 
 .button__delete{
   font-weight: 600;
+  --mat-button-filled-container-height: 49px;
   @include mat.button-overrides((
     filled-container-color: #FF5B5B,
     filled-label-text-color: #411616
@@ -107,4 +108,32 @@ li{
     background-image: url('../../../assets/check-mark.svg') ;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.filter{
+  display: flex;
+}
+
+.button__filter{
+  margin-left: 0.5rem;
+  font-weight: 600;
+  --mat-button-filled-container-height: 42px;
+  @include mat.button-overrides((
+    filled-container-color: #242424,
+    filled-label-text-color: #CDCDCD
+  ));
+}
+
+.button__filter:hover{
+  @include mat.button-overrides((
+    filled-container-color: #FFFFFF,
+    filled-label-text-color: #101010
+  ));
+}
+
+.button__filter__selected{
+  @include mat.button-overrides((
+    filled-container-color: #FFFFFF,
+    filled-label-text-color: #101010
+  ));
 }

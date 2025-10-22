@@ -1,7 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ITask } from '../../models/task.model';
+import { ITask, StatusTask } from '../../models/task.model';
 import {MatButtonModule} from '@angular/material/button';
 import { ButtonComponent } from '@shared';
 import { TooltipDirective } from '../../directives';
@@ -25,6 +25,7 @@ export class ToDoListItem {
   public changingTask?: ITask;
   public changingTitle?: string;
   public changingDescription?: string;
+  public filter: StatusTask | null = null;
 
   public delTask(idTask: number): void{
     this.taskService.delTask(idTask);
@@ -59,5 +60,9 @@ export class ToDoListItem {
   public changeStatusTask(taskId: number, taskStatus: string){
     let status = taskStatus === 'Completed';
     this.taskService.CompletingTask(taskId, status);
+  }
+
+  public selectFilter(selectStatus: StatusTask | null): void{
+    this.filter = selectStatus;
   }
 }

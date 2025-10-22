@@ -13,4 +13,4 @@ export interface IToast {
   message: string;
 }
 
-type StatusTask = 'InProgress' | 'Completed';
+export type StatusTask = 'InProgress' | 'Completed';

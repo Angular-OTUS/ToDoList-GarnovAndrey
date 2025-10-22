@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ITask } from '../../models/task.model';
+import { ITask, StatusTask } from '../../models/task.model';
 import {MatButtonModule} from '@angular/material/button';
 import { ToDoListItem } from '../to-do-list-item/to-do-list-item';
 import { ButtonComponent, LoadingComponent } from '@shared';
