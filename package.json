@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "json-server": "json-server --watch db.json --port 3000"
   },
   "prettier": {
     "printWidth": 100,

@@ -8,6 +8,7 @@ import { TooltipDirective } from '../../directives';
 import { TasksService } from '../../services/tasks';
 import { Toast } from "../toast/toast";
 import { ToastService } from '../../services/toast';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-to-do-list-item',
@@ -18,7 +19,7 @@ import { ToastService } from '../../services/toast';
 export class ToDoListItem {
   constructor(private toastService: ToastService) {}
   @Input() public tasks:ITask[] = [];
-  private readonly taskService = inject(TasksService);
+  private readonly tasksService = inject(TasksService);
 
   public selectedTask?: ITask | null;
   public editTaskFlag: boolean = false;
@@ -26,11 +27,15 @@ export class ToDoListItem {
   public changingTitle?: string;
   public changingDescription?: string;
   public filter: StatusTask | null = null;
+  private taskSubscription?: Subscription;
 
   public delTask(idTask: number): void{
-    this.taskService.delTask(idTask);
-    this.selectedTask = null;
-    this.toastService.success('Задача удалена!');
+    this.taskSubscription = this.tasksService.delTask(idTask).subscribe(() => {
+      this.selectedTask = null;
+      this.toastService.success('Задача удалена!');
+    }, error => {
+      this.toastService.error(`Ошибка ответа API: ${error.message}`);
+    });
   }
 
   public selectTask(task: ITask): void{
@@ -51,18 +56,34 @@ export class ToDoListItem {
     if(this.changingTask && this.changingTitle){
       this.changingTask.title = this.changingTitle;
       this.changingTask.description = this.changingDescription;
-      this.taskService.changeTask(this.changingTask);
-      this.editTaskFlag = !this.editTaskFlag
-      this.toastService.success('Задача обновлена!')
+      this.taskSubscription = this.tasksService.changeTask(this.changingTask).subscribe(()=>{
+        this.editTaskFlag = !this.editTaskFlag;
+        this.selectedTask = this.changingTask;
+        this.toastService.success('Задача обновлена!')
+      }, error => {
+        this.toastService.error(`Ошибка ответа API: ${error.message}`);
+      });
     }
   }
 
-  public changeStatusTask(taskId: number, taskStatus: string){
-    let status = taskStatus === 'Completed';
-    this.taskService.CompletingTask(taskId, status);
+  public changeStatusTask(task: ITask){
+    let status = task.status === 'Completed';
+    task.status = status? 'InProgress' : 'Completed';
+    this.taskSubscription = this.tasksService.changeTask(task).subscribe(()=>{
+      this.toastService.success('Статус задачи обновлен!')
+    }, error => {
+      this.toastService.error(`Ошибка ответа API: ${error.message}`);
+    });
   }
 
   public selectFilter(selectStatus: StatusTask | null): void{
     this.filter = selectStatus;
   }
+
+  ngOnDestroy(){
+    if(this.taskSubscription){
+      this.taskSubscription.unsubscribe();
+    }
+  }
+
 }

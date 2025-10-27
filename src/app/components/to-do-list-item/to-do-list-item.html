@@ -13,7 +13,7 @@
           <li >
             <div class="list-tasks__task" [ngClass]="{'task-selected': selectedTask?.id === task.id}">
               <span appTooltip="{{task.description}}" (click)="selectTask(task)">{{task.title}}</span>
-              <input class="checkbox" type="checkbox" [checked]="task.status === 'Completed'" (change)="changeStatusTask(task.id, task.status)">
+              <input class="checkbox" type="checkbox" [checked]="task.status === 'Completed'" (change)="changeStatusTask(task)">
             </div>
           </li>
         }

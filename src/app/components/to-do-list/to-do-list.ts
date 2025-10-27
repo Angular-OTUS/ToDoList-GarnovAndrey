@@ -8,6 +8,8 @@ import { LoadingComponent } from '@shared';
 import { TasksService } from '../../services/tasks';
 import { Subscription } from 'rxjs';
 import { TodoCreateItem } from '../todo-create-item/todo-create-item';
+import { ToastService } from '@app/services/toast';
+
 
 
 @Component({
@@ -19,6 +21,7 @@ import { TodoCreateItem } from '../todo-create-item/todo-create-item';
 
 
 export class ToDoList implements OnInit, OnDestroy {
+  constructor(private toastService : ToastService) {}
   private readonly tasksService = inject(TasksService)
 
   public newTaskText?: string;
@@ -31,10 +34,12 @@ export class ToDoList implements OnInit, OnDestroy {
   ngOnInit(){
     setTimeout(()=>{
       this.isLoading = !this.isLoading;
-    }, 500)
+    }, 500);
     this.tasksSubscription = this.tasksService.tasks$.subscribe(tasks => {
       this.tasks = tasks;
-    })
+    }, error => {
+      this.toastService.error(`Ошибка ответа API: ${error.message}`);
+    });
   }
 
   ngOnDestroy() {

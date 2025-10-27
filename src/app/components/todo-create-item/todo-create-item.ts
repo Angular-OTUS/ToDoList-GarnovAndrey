@@ -6,6 +6,8 @@ import { TasksService } from '@app/services/tasks';
 import { ToastService } from '@app/services/toast';
 import { ButtonComponent } from '@shared'
 import { Toast } from '../toast/toast';
+import { ITask, ITaskNew } from '@app/models/task.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-todo-create-item',
@@ -13,17 +15,30 @@ import { Toast } from '../toast/toast';
   templateUrl: './todo-create-item.html',
   styleUrl: './todo-create-item.scss'
 })
+
 export class TodoCreateItem {
   constructor(private toastService : ToastService){}
   private readonly tasksService = inject(TasksService)
   public newTaskText?: string;
   public newTaskTextDescription?: string;
+  private tasksSubscription?: Subscription;
+  public newTask?: ITaskNew;
 
   public addTask(): void{
-    this.tasksService.addTask(String(this.newTaskText), String(this.newTaskTextDescription));
-    this.newTaskText = undefined;
-    this.newTaskTextDescription = undefined;
-    this.toastService.success('Задача добавлена!')
+    this.newTask = {title: String(this.newTaskText), description: String(this.newTaskTextDescription), status: 'InProgress'};
+    this.tasksSubscription = this.tasksService.addTask(this.newTask).subscribe(()=> {
+      this.newTaskText = undefined;
+      this.newTaskTextDescription = undefined;
+      this.toastService.success('Задача добавлена!');
+    }, error => {
+      this.toastService.error(`Ошибка ответа API: ${error.message}`);
+    });
+  }
+
+  ngOnDestroy() {
+    if(this.tasksSubscription){
+      this.tasksSubscription.unsubscribe();
+    }
   }
 
 }
