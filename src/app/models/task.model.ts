@@ -10,6 +10,12 @@ export interface ITask extends ITaskNew {
   id: number;
 }
 
+export interface ITaskState{
+  tasks: ITask[];
+  isLoading: boolean;
+  error: string | null;
+}
+
 export interface IToast {
   id: number;
   status: TStatus;

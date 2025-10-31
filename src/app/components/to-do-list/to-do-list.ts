@@ -1,15 +1,15 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, computed, DestroyRef, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ITask } from '../../models/task.model';
+import { ITask, ITaskState } from '../../models/task.model';
 import {MatButtonModule} from '@angular/material/button';
 import { ToDoListItem } from '../to-do-list-item/to-do-list-item';
 import { LoadingComponent } from '@shared';
 import { TasksService } from '../../services/tasks';
-import { Subscription } from 'rxjs';
+import { catchError, map, Observable, of, startWith } from 'rxjs';
 import { TodoCreateItem } from '../todo-create-item/todo-create-item';
 import { ToastService } from '@app/services/toast';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 
 
 
@@ -21,21 +21,24 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 
 
-export class ToDoList implements OnInit {
+export class ToDoList {
   private readonly toastService = inject(ToastService);
   private readonly tasksService = inject(TasksService);
-  private destroyRef = inject(DestroyRef);
-  public isLoading = true;
-  public tasks: ITask[] = [];
 
-  ngOnInit(){
-    setTimeout(()=>{
-      this.isLoading = !this.isLoading;
-    }, 500);
-    this.tasksService.tasks$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(tasks => {
-      this.tasks = tasks;
-    }, error => {
-      this.toastService.error(`Ошибка ответа API: ${error.message}`);
-    });
-  }
+  private taskState$: Observable<ITaskState> = this.tasksService.tasks$.pipe(
+    map((tasks) => ({tasks: tasks, isLoading: false, error: null})),
+    catchError((error) => {
+      const messageError = `Ошибка ответа API: ${error.message}`;
+      this.toastService.error(messageError);
+      return of({tasks: [], isLoading: false, error: messageError});
+    }),
+    startWith({tasks: [], isLoading: true, error: null})
+  );
+
+  private readonly taskState = toSignal(this.taskState$, {
+    initialValue: {tasks: [], isLoading: true, error: null} as ITaskState,
+  });
+
+  public readonly tasks = computed(() => this.taskState().tasks);
+  public readonly isLoading = computed(() => this.taskState().isLoading);
 }
