@@ -1,8 +1,9 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { IToast } from '../../models/task.model';
 import { CommonModule } from '@angular/common';
 import { ToastService } from '../../services/toast';
 import { Observable } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-toast',
@@ -11,12 +12,7 @@ import { Observable } from 'rxjs';
   styleUrl: './toast.scss'
 })
 export class Toast {
-
-  toasts$: Observable<IToast[]>;
-
-  constructor(private toastService: ToastService) {
-    this.toasts$ = this.toastService.getToasts();
-  }
-
-
+  private destroyRef = inject(DestroyRef)
+  private toastService = inject(ToastService);
+  toasts$ = this.toastService.getToasts().pipe(takeUntilDestroyed(this.destroyRef));
 }

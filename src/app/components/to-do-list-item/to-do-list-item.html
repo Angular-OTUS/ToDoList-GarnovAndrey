@@ -8,7 +8,7 @@
 <div class="tasks">
   <div class="list-tasks">
     <ul>
-      @for(task of tasks; track task.id ){
+      @for(task of tasks(); track task.id ){
         @if(task.status === filter || filter === null){
           <li >
             <div class="list-tasks__task" [ngClass]="{'task-selected': selectedTask?.id === task.id}">

@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, DestroyRef, inject, input, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ITask, StatusTask } from '../../models/task.model';
@@ -8,7 +8,7 @@ import { TooltipDirective } from '../../directives';
 import { TasksService } from '../../services/tasks';
 import { Toast } from "../toast/toast";
 import { ToastService } from '../../services/toast';
-import { Subscription } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-to-do-list-item',
@@ -17,8 +17,10 @@ import { Subscription } from 'rxjs';
   styleUrl: './to-do-list-item.scss'
 })
 export class ToDoListItem {
-  constructor(private toastService: ToastService) {}
-  @Input() public tasks:ITask[] = [];
+
+  public tasks = input<ITask[]>([]);
+
+  private readonly toastService = inject(ToastService);
   private readonly tasksService = inject(TasksService);
 
   public selectedTask?: ITask | null;
@@ -27,10 +29,10 @@ export class ToDoListItem {
   public changingTitle?: string;
   public changingDescription?: string;
   public filter: StatusTask | null = null;
-  private taskSubscription?: Subscription;
+  private destroyRef = inject(DestroyRef)
 
   public delTask(idTask: number): void{
-    this.taskSubscription = this.tasksService.delTask(idTask).subscribe(() => {
+    this.tasksService.delTask(idTask).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
       this.selectedTask = null;
       this.toastService.success('Задача удалена!');
     }, error => {
@@ -56,7 +58,7 @@ export class ToDoListItem {
     if(this.changingTask && this.changingTitle){
       this.changingTask.title = this.changingTitle;
       this.changingTask.description = this.changingDescription;
-      this.taskSubscription = this.tasksService.changeTask(this.changingTask).subscribe(()=>{
+      this.tasksService.changeTask(this.changingTask).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(()=>{
         this.editTaskFlag = !this.editTaskFlag;
         this.selectedTask = this.changingTask;
         this.toastService.success('Задача обновлена!')
@@ -69,7 +71,7 @@ export class ToDoListItem {
   public changeStatusTask(task: ITask){
     let status = task.status === 'Completed';
     task.status = status? 'InProgress' : 'Completed';
-    this.taskSubscription = this.tasksService.changeTask(task).subscribe(()=>{
+    this.tasksService.changeTask(task).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(()=>{
       this.toastService.success('Статус задачи обновлен!')
     }, error => {
       this.toastService.error(`Ошибка ответа API: ${error.message}`);
@@ -79,11 +81,4 @@ export class ToDoListItem {
   public selectFilter(selectStatus: StatusTask | null): void{
     this.filter = selectStatus;
   }
-
-  ngOnDestroy(){
-    if(this.taskSubscription){
-      this.taskSubscription.unsubscribe();
-    }
-  }
-
 }

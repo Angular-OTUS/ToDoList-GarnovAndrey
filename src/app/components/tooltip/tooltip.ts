@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, input, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tooltip',
@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 
 export class Tooltip {
-  @Input() tooltipTextHelp: string = '';
-  @Input() left: number = 0;
-  @Input() top: number = 0;
+  public tooltipTextHelp = input<string>('');
+  public left = input<number>(0);
+  public top = input<number>(0);
 }

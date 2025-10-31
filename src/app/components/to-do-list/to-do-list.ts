@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ITask } from '../../models/task.model';
@@ -9,6 +9,7 @@ import { TasksService } from '../../services/tasks';
 import { Subscription } from 'rxjs';
 import { TodoCreateItem } from '../todo-create-item/todo-create-item';
 import { ToastService } from '@app/services/toast';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 
 
@@ -20,32 +21,21 @@ import { ToastService } from '@app/services/toast';
 })
 
 
-export class ToDoList implements OnInit, OnDestroy {
-  constructor(private toastService : ToastService) {}
-  private readonly tasksService = inject(TasksService)
-
-  public newTaskText?: string;
-  public newTaskTextDescription?: string;
-  public isLoading: boolean = true;
-
+export class ToDoList implements OnInit {
+  private readonly toastService = inject(ToastService);
+  private readonly tasksService = inject(TasksService);
+  private destroyRef = inject(DestroyRef);
+  public isLoading = true;
   public tasks: ITask[] = [];
-  private tasksSubscription?: Subscription;
 
   ngOnInit(){
     setTimeout(()=>{
       this.isLoading = !this.isLoading;
     }, 500);
-    this.tasksSubscription = this.tasksService.tasks$.subscribe(tasks => {
+    this.tasksService.tasks$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(tasks => {
       this.tasks = tasks;
     }, error => {
       this.toastService.error(`Ошибка ответа API: ${error.message}`);
     });
   }
-
-  ngOnDestroy() {
-    if(this.tasksSubscription){
-      this.tasksSubscription.unsubscribe();
-    }
-  }
-
 }
