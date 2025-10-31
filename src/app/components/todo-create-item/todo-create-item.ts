@@ -26,12 +26,15 @@ export class TodoCreateItem {
 
   public addTask(): void{
     this.newTask = {title: String(this.newTaskText), description: String(this.newTaskTextDescription), status: 'InProgress'};
-    this.tasksService.addTask(this.newTask).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(()=> {
-      this.newTaskText = undefined;
-      this.newTaskTextDescription = undefined;
-      this.toastService.success('Задача добавлена!');
-    }, error => {
+    this.tasksService.addTask(this.newTask).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+      next: () => {
+        this.newTaskText = undefined;
+        this.newTaskTextDescription = undefined;
+        this.toastService.success('Задача добавлена!');
+      },
+      error: (error) => {
       this.toastService.error(`Ошибка ответа API: ${error.message}`);
+      }
     });
   }
 

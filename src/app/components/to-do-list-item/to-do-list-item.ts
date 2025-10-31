@@ -32,11 +32,13 @@ export class ToDoListItem {
   private destroyRef = inject(DestroyRef)
 
   public delTask(idTask: number): void{
-    this.tasksService.delTask(idTask).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
-      this.selectedTask = null;
-      this.toastService.success('Задача удалена!');
-    }, error => {
+    this.tasksService.delTask(idTask).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+      next: () => {
+        this.selectedTask = null;
+        this.toastService.success('Задача удалена!');
+      }, error: (error) => {
       this.toastService.error(`Ошибка ответа API: ${error.message}`);
+      }
     });
   }
 
@@ -58,12 +60,15 @@ export class ToDoListItem {
     if(this.changingTask && this.changingTitle){
       this.changingTask.title = this.changingTitle;
       this.changingTask.description = this.changingDescription;
-      this.tasksService.changeTask(this.changingTask).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(()=>{
-        this.editTaskFlag = !this.editTaskFlag;
-        this.selectedTask = this.changingTask;
-        this.toastService.success('Задача обновлена!')
-      }, error => {
+      this.tasksService.changeTask(this.changingTask).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+        next: () =>{
+          this.editTaskFlag = !this.editTaskFlag;
+          this.selectedTask = this.changingTask;
+          this.toastService.success('Задача обновлена!')
+        },
+        error: (error) => {
         this.toastService.error(`Ошибка ответа API: ${error.message}`);
+        }
       });
     }
   }
@@ -71,10 +76,13 @@ export class ToDoListItem {
   public changeStatusTask(task: ITask){
     let status = task.status === 'Completed';
     task.status = status? 'InProgress' : 'Completed';
-    this.tasksService.changeTask(task).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(()=>{
-      this.toastService.success('Статус задачи обновлен!')
-    }, error => {
+    this.tasksService.changeTask(task).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+      next: () => {
+        this.toastService.success('Статус задачи обновлен!')
+      },
+      error: (error) => {
       this.toastService.error(`Ошибка ответа API: ${error.message}`);
+      }
     });
   }
 
