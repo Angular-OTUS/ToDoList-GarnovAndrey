@@ -1,68 +1,8 @@
-@use '@angular/material' as mat;
-
-.button__add{
-  font-weight: 600;
-  @include mat.button-overrides((
-    filled-container-color: #06AA71,
-  ));
-}
-.button__add:disabled{
-  background-color: #06AA71;
-  color: #FFFFFF;
-  opacity: 0.5;
-}
-
 .sidebar h2{
   margin-left: 20px;
 }
 .sidebar span{
   margin-left: 20px;
-}
-
-.add-task{
-  display: grid;
-  align-items: center;
-  background-color: #242424;
-  border-radius: 20px;
-}
-
-.add-task__title{
-  display: flex;
-}
-.add-task__description{
-  display: flex;
-  scrollbar-color: #9f9f9f #2c2c2c;
-}
-
-
-.task__description{
-  color: #FFFFFF;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: 500;
-  border: 2px solid #313131;
-  border-radius: 20px;
-  background-color: #242424;
-  width: 100%;
-  min-height: 30px;
-  resize: vertical;
-  margin: 10px 30px;
-  resize: none;
-}
-
-.add-task__input{
-  border: none;
-  outline: none;
-  background-color: #242424;
-  color: #FFFFFF;
-  text-align: left;
-  word-wrap: break-word;
-  padding-left: 28px;
-  margin: 0 10px;
-  flex: 1;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 20px;
 }
 
 .dashed-line {
@@ -73,68 +13,6 @@
   border-top: 2px dashed #242424;
   width: 100%;
 }
-
-.box__loader{
-  display: flex;
-  justify-content: center;
-}
-
-// loader
-.loader {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: inline-block;
-  position: relative;
-  border: 3px solid;
-  border-color: #FFF #FFF transparent transparent;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-}
-.loader::after,
-.loader::before {
-  content: '';
-  box-sizing: border-box;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  border: 3px solid;
-  border-color: transparent transparent #FF3D00 #FF3D00;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  box-sizing: border-box;
-  animation: rotationBack 0.5s linear infinite;
-  transform-origin: center center;
-}
-.loader::before {
-  width: 32px;
-  height: 32px;
-  border-color: #FFF #FFF transparent transparent;
-  animation: rotation 1.5s linear infinite;
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@keyframes rotationBack {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(-360deg);
-  }
-}
-
-
 
 
 

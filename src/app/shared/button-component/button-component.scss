@@ -1,20 +1,17 @@
 @use '@angular/material' as mat;
 
 .app-button{
-  margin: 12px;
   border: none;
   font-weight: 600;
-  --mat-button-filled-container-height: 49px;
   --mat-button-filled-container-shape: 8px;
   --mat-button-filled-label-text-font: Arial;
-  @include mat.button-overrides((
-    filled-label-text-color: #FFFFFF,
-  ));
+  width: 100%;
 }
 
 .button__add{
   @include mat.button-overrides((
     filled-container-color: #06AA71,
+    filled-label-text-color: #FFFFFF,
   ));
 }
 .button__add:disabled{

@@ -23,8 +23,18 @@ li{
   border-radius: 20px;
   background-color: #242424;
   margin: 14px 0px 14px 20px;
-  padding: 10px 20px;
-  flex: 0 0 350px;
+  padding: 12px 20px;
+  width: 40%;
+  height: 100%;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+}
+
+.description-content{
+  height: 100%;
+  margin-bottom: 12px;
 }
 
 .list-tasks__task {
@@ -50,10 +60,19 @@ li{
 
 .button__delete{
   font-weight: 600;
+  --mat-button-filled-container-height: 49px;
   @include mat.button-overrides((
     filled-container-color: #FF5B5B,
     filled-label-text-color: #411616
   ));
+}
+
+// .editform{
+
+// }
+
+.edit-fields{
+  margin-bottom: 12px;
 }
 
 .edit-task-field{
@@ -65,11 +84,56 @@ li{
   border-radius: 20px;
   background-color: #242424;
   min-height: 30px;
+  width: 100%;
+  box-sizing: border-box;
   resize: vertical;
   scrollbar-color: #9f9f9f #2c2c2c;
 }
 
-.edit-btn{
+.checkbox{
+  appearance: none;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 0.13rem solid #CDCDCD;
+  border-radius: 0.5rem;
+  background-color: #242424;
+  cursor: pointer;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin: 23px;
+}
+
+.checkbox:checked{
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+    background-image: url('../../../assets/check-mark.svg') ;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.filter{
   display: flex;
-  justify-content: end;
+}
+
+.button__filter{
+  margin-left: 0.5rem;
+  font-weight: 600;
+  --mat-button-filled-container-height: 42px;
+  @include mat.button-overrides((
+    filled-container-color: #242424,
+    filled-label-text-color: #CDCDCD
+  ));
+}
+
+.button__filter:hover{
+  @include mat.button-overrides((
+    filled-container-color: #FFFFFF,
+    filled-label-text-color: #101010
+  ));
+}
+
+.button__filter__selected{
+  @include mat.button-overrides((
+    filled-container-color: #FFFFFF,
+    filled-label-text-color: #101010
+  ));
 }

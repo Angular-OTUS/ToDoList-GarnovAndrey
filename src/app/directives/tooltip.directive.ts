@@ -1,4 +1,4 @@
-import { ComponentRef, Directive, ElementRef, HostBinding, HostListener, Input, Renderer2, ViewContainerRef } from '@angular/core';
+import { ComponentRef, Directive, ElementRef, HostBinding, HostListener, inject, input, Input, Renderer2, ViewContainerRef } from '@angular/core';
 import { Tooltip } from '../components/tooltip/tooltip';
 
 @Directive({
@@ -6,13 +6,12 @@ import { Tooltip } from '../components/tooltip/tooltip';
 })
 export class TooltipDirective {
 
-  @Input('appTooltip') tooltipTextHelp: string = '';
+  public tooltipTextHelp = input<string>('', {alias: 'appTooltip'});
 
   private componentRef: ComponentRef<Tooltip> | null = null;
-
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, private viewContainerRef: ViewContainerRef) {
-
-  }
+  private elementRef = inject(ElementRef);
+  private renderer = inject(Renderer2);
+  private viewContainerRef = inject(ViewContainerRef);
 
   @HostBinding('style.color') color: string = '';
 
@@ -29,11 +28,11 @@ export class TooltipDirective {
       // Создаем компонент
       this.componentRef = this.viewContainerRef.createComponent(Tooltip);
       // Передаем данные
-      this.componentRef.instance.tooltipTextHelp = this.tooltipTextHelp;
+      this.componentRef.setInput('tooltipTextHelp', this.tooltipTextHelp());
       const {left, right, bottom} = this.elementRef.nativeElement.getBoundingClientRect();
-      this.componentRef.instance.left = (right - left) / 2 + left;
-      this.componentRef.instance.top = bottom;
-      this.componentRef.instance
+      this.componentRef.setInput('left', (right - left) / 2 + left);
+      this.componentRef.setInput('top', bottom);
+
       // Добавляем в DOM
       const tooltipElement = this.componentRef.location.nativeElement;
       this.renderer.appendChild(document.body, tooltipElement);

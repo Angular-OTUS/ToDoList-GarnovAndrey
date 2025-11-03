@@ -1,9 +1,19 @@
 export type TStatus = 'success' | 'error' | 'info';
 
-export interface ITask {
-  id: number;
+export interface ITaskNew {
   title: string;
   description?: string;
+  status: StatusTask;
+}
+
+export interface ITask extends ITaskNew {
+  id: number;
+}
+
+export interface ITaskState{
+  tasks: ITask[];
+  isLoading: boolean;
+  error: string | null;
 }
 
 export interface IToast {
@@ -11,3 +21,5 @@ export interface IToast {
   status: TStatus;
   message: string;
 }
+
+export type StatusTask = 'InProgress' | 'Completed';

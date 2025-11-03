@@ -1,24 +1,8 @@
-<app-toast />
 <h1>Todo List</h1>
-
-<div class="add-task">
-  <div class="add-task__title">
-    <input class="add-task__input" placeholder="Добавь новую задачу" [(ngModel)]="newTaskText" >
-    <app-button-component appTooltip="Добавляет новую задачу" class="button__add" [title]="'Добавить'" [disabledState]="!newTaskText" (onClick)="addTask()" />
-  </div>
-  @if(newTaskText){
-    <div class="add-task__description">
-      <textarea class="task__description" [(ngModel)]="newTaskTextDescription" cols="30" rows="10"></textarea>
-    </div>
-  }
-
-</div>
-
+<app-todo-create-item></app-todo-create-item>
 <hr class="dashed-line">
-@if(isLoading){
-  <div class="box__loader">
-    <span class="loader"></span>
-  </div>
+@if(isLoading()){
+  <app-loading></app-loading>
 }@else{
-    <app-to-do-list-item [tasks]="tasks" />
+  <app-to-do-list-item [tasks]="tasks()" />
 }
