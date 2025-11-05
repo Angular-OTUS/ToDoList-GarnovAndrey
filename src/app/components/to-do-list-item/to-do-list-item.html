@@ -21,27 +21,8 @@
     </ul>
   </div>
   @if(selectedTask){
-    <div class="sidebar" (dblclick)="editTask()">
-      @if(!editTaskFlag){
-        <div class="description-content">
-          <h2>{{selectedTask.title}}</h2>
-          <h3>Описание</h3>
-          <span>{{selectedTask.description}}</span>
-        </div>
-        <app-button-component class="button__delete" appTooltip="Удаляет задачу" (onClick)="delTask(selectedTask.id)">Удалить</app-button-component>
-      }
-      @else {
-        <div class="editform">
-          <div class="edit-fields">
-            <textarea class="edit-task-field" placeholder="Редактировать задачу" cols="30" rows="3" [(ngModel)]="changingTitle"></textarea>
-            <h3>Описание</h3>
-            <textarea class="edit-task-field" [(ngModel)]="changingDescription" cols="30" rows="10"></textarea>
-          </div>
-          <div class="edit-btn">
-            <app-button-component class="button__add" (onClick)="saveChangesTask()">Сохранить</app-button-component>
-          </div>
-        </div>
-      }
+    <div class="sidebar">
+      <app-to-do-item-view [selectedTask]="selectedTask" (selectedTaskUpdate)="selectedTaskUpdate($event)"></app-to-do-item-view>
     </div>
   }
 </div>

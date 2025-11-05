@@ -9,10 +9,11 @@ import { TasksService } from '../../services/tasks';
 import { Toast } from "../toast/toast";
 import { ToastService } from '../../services/toast';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ToDoItemView } from '../to-do-item-view';
 
 @Component({
   selector: 'app-to-do-list-item',
-  imports: [CommonModule, FormsModule, MatButtonModule, ButtonComponent, TooltipDirective, Toast],
+  imports: [CommonModule, FormsModule, MatButtonModule, ButtonComponent, TooltipDirective, Toast, ToDoItemView],
   templateUrl: './to-do-list-item.html',
   styleUrl: './to-do-list-item.scss'
 })
@@ -25,52 +26,16 @@ export class ToDoListItem {
 
   public selectedTask?: ITask | null;
   public editTaskFlag: boolean = false;
-  public changingTask?: ITask;
-  public changingTitle?: string;
-  public changingDescription?: string;
   public filter: StatusTask | null = null;
   private destroyRef = inject(DestroyRef)
-
-  public delTask(idTask: number): void{
-    this.tasksService.delTask(idTask).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
-      next: () => {
-        this.selectedTask = null;
-        this.toastService.success('Задача удалена!');
-      }, error: (error) => {
-      this.toastService.error(`Ошибка ответа API: ${error.message}`);
-      }
-    });
-  }
 
   public selectTask(task: ITask): void{
     this.selectedTask != task? this.selectedTask = task : this.selectedTask = null;
     this.editTaskFlag = false;
   }
 
-  public editTask(){
-    if(this.selectedTask){
-      this.changingTask = {...this.selectedTask}
-      this.changingTitle = this.changingTask?.title;
-      this.changingDescription = this.changingTask?.description;
-      this.editTaskFlag = !this.editTaskFlag
-    }
-  }
-
-  public saveChangesTask(){
-    if(this.changingTask && this.changingTitle){
-      this.changingTask.title = this.changingTitle;
-      this.changingTask.description = this.changingDescription;
-      this.tasksService.changeTask(this.changingTask).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
-        next: () =>{
-          this.editTaskFlag = !this.editTaskFlag;
-          this.selectedTask = this.changingTask;
-          this.toastService.success('Задача обновлена!')
-        },
-        error: (error) => {
-        this.toastService.error(`Ошибка ответа API: ${error.message}`);
-        }
-      });
-    }
+  public selectedTaskUpdate(updateSelectedTask: ITask | null){
+    this.selectedTask = updateSelectedTask;
   }
 
   public changeStatusTask(task: ITask){
