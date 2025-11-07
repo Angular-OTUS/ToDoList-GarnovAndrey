@@ -1,11 +1,11 @@
-<div (dblclick)="editTask()">
+<div class=sidebar (dblclick)="editTask()">
   @if(!editTaskFlag){
     <div class="description-content">
-      <h2>{{selectedTask()?.title}}</h2>
+      <h2>{{selectedTask?.title}}</h2>
       <h3>Описание</h3>
-      <span>{{selectedTask()?.description}}</span>
+      <span>{{selectedTask?.description}}</span>
     </div>
-    <app-button-component class="button__delete" appTooltip="Удаляет задачу" (onClick)="delTask(selectedTask()!.id)">Удалить</app-button-component>
+    <app-button-component class="button__delete" appTooltip="Удаляет задачу" (onClick)="delTask(selectedTask!.id)">Удалить</app-button-component>
   }
   @else {
     <div class="editform">

@@ -11,8 +11,8 @@
       @for(task of tasks(); track task.id ){
         @if(task.status === filter || filter === null){
           <li >
-            <div class="list-tasks__task" [ngClass]="{'task-selected': selectedTask?.id === task.id}">
-              <span appTooltip="{{task.description}}" (click)="selectTask(task)">{{task.title}}</span>
+            <div class="list-tasks__task" [routerLink]="[task.id]" routerLinkActive="task-selected">
+              <span appTooltip="{{task.description}}">{{task.title}}</span>
               <input class="checkbox" type="checkbox" [checked]="task.status === 'Completed'" (change)="changeStatusTask(task)">
             </div>
           </li>
@@ -20,9 +20,5 @@
       }
     </ul>
   </div>
-  @if(selectedTask){
-    <div class="sidebar">
-      <app-to-do-item-view [selectedTask]="selectedTask" (selectedTaskUpdate)="selectedTaskUpdate($event)"></app-to-do-item-view>
-    </div>
-  }
+    <router-outlet />
 </div>

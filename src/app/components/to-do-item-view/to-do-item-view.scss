@@ -1,5 +1,13 @@
 @use '@angular/material' as mat;
 
+.sidebar{
+  border: none;
+  border-radius: 20px;
+  background-color: #242424;
+  margin: 14px 0px 14px 20px;
+  padding: 12px 20px;
+}
+
 .sidebar h2 {
   margin-top: 0;
 }

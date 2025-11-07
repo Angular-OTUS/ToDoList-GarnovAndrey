@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, inject, input, Input, output } from '@angular/core';
+import { Component, DestroyRef, inject, input, Input, OnInit, output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ITask } from '@app/models/task.model';
 import { TasksService } from '@app/services/tasks';
 import { ToastService } from '@app/services/toast';
@@ -13,22 +14,43 @@ import { ButtonComponent } from '@app/shared';
   templateUrl: './to-do-item-view.html',
   styleUrl: './to-do-item-view.scss'
 })
-export class ToDoItemView {
+export class ToDoItemView implements OnInit {
 
   private readonly tasksService = inject(TasksService);
   private readonly toastService = inject(ToastService);
   private destroyRef = inject(DestroyRef)
+  readonly #route = inject(ActivatedRoute);
+  readonly #router = inject(Router);
 
-  public selectedTask = input<ITask | null>();
-  public selectedTaskUpdate = output<ITask | null>();
+  public selectedTask?: ITask | null;
   public editTaskFlag: boolean = false;
   public changingTask?: ITask;
   public changingTitle?: string;
   public changingDescription?: string;
 
+  ngOnInit(){
+    this.#route.params.pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(params => {
+      const taskId = params['id'];
+      this.getSelectedTask(taskId);
+    });
+  }
+
+  public getSelectedTask(idTask: number){
+    this.tasksService.getTask(idTask).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+      next: (data) => {
+        this.selectedTask = data;
+      },
+      error: (error) => {
+      this.toastService.error(`Ошибка ответа API: ${error.message}`);
+      }
+    })
+  }
+
   public editTask(){
     if(this.selectedTask){
-      this.changingTask = {...this.selectedTask()} as ITask;
+      this.changingTask = {...this.selectedTask} as ITask;
       this.changingTitle = this.changingTask?.title;
       this.changingDescription = this.changingTask?.description;
       this.editTaskFlag = !this.editTaskFlag
@@ -42,7 +64,7 @@ export class ToDoItemView {
       this.tasksService.changeTask(this.changingTask).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
         next: () =>{
           this.editTaskFlag = !this.editTaskFlag;
-          this.selectedTaskUpdate.emit(this.changingTask as ITask);
+          this.selectedTask = this.changingTask;
           this.toastService.success('Задача обновлена!')
         },
         error: (error) => {
@@ -55,8 +77,9 @@ export class ToDoItemView {
   public delTask(idTask: number): void{
     this.tasksService.delTask(idTask).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
-        this.selectedTaskUpdate.emit(null);
+        this.selectedTask = null;
         this.toastService.success('Задача удалена!');
+        this.#router.navigate(['']);
       }, error: (error) => {
       this.toastService.error(`Ошибка ответа API: ${error.message}`);
       }
