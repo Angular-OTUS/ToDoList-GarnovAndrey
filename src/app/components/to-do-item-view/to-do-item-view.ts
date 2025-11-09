@@ -7,6 +7,7 @@ import { ITask } from '@app/models/task.model';
 import { TasksService } from '@app/services/tasks';
 import { ToastService } from '@app/services/toast';
 import { ButtonComponent } from '@app/shared';
+import { switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-to-do-item-view',
@@ -30,10 +31,15 @@ export class ToDoItemView implements OnInit {
 
   ngOnInit(){
     this.#route.params.pipe(
+      switchMap(params =>  this.tasksService.getTask(params['id'])),
       takeUntilDestroyed(this.destroyRef)
-    ).subscribe(params => {
-      const taskId = params['id'];
-      this.getSelectedTask(taskId);
+    ).subscribe({
+      next: (data) => {
+        this.selectedTask = data;
+      },
+      error: (error) => {
+        this.toastService.error(`Ошибка ответа API: ${error.message}`);
+      }
     });
   }
 
