@@ -10,12 +10,12 @@ import { ButtonComponent } from '@app/shared';
 import { switchMap, tap } from 'rxjs';
 
 @Component({
-  selector: 'app-to-do-item-view',
+  selector: 'app-todo-item',
   imports: [CommonModule, FormsModule, ButtonComponent],
-  templateUrl: './to-do-item-view.html',
-  styleUrl: './to-do-item-view.scss'
+  templateUrl: './todo-item.html',
+  styleUrl: './todo-item.scss'
 })
-export class ToDoItemView implements OnInit {
+export class ToDoItem implements OnInit {
 
   private readonly tasksService = inject(TasksService);
   private readonly toastService = inject(ToastService);

@@ -9,15 +9,15 @@ import { TasksService } from '../../services/tasks';
 import { Toast } from "../toast/toast";
 import { ToastService } from '../../services/toast';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RouterOutlet, RouterLinkWithHref, ActivatedRoute, RouterLinkActive, Router } from '@angular/router';
+import { RouterOutlet, RouterLinkWithHref, RouterLinkActive } from '@angular/router';
 
 @Component({
-  selector: 'app-to-do-list-item',
+  selector: 'app-todo-list',
   imports: [CommonModule, FormsModule, MatButtonModule, ButtonComponent, TooltipDirective, Toast, RouterOutlet, RouterLinkWithHref, RouterLinkActive],
-  templateUrl: './to-do-list-item.html',
-  styleUrl: './to-do-list-item.scss'
+  templateUrl: './todo-list.html',
+  styleUrl: './todo-list.scss'
 })
-export class ToDoListItem {
+export class ToDoList {
 
   public tasks = input<ITask[]>([]);
 
