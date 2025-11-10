@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, Input, output, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 
 @Component({

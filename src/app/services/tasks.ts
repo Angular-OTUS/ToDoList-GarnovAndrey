@@ -19,6 +19,10 @@ export class TasksService {
     this.http.get<ITask[]>(`${this.apiUrl}/tasks`).subscribe(tasks => this.tasksSubject.next(tasks))
   }
 
+  public getTask(idTask: number){
+    return this.http.get<ITask>(`${this.apiUrl}/tasks/${idTask}`);
+  }
+
   public addTask(newTask: Omit<ITask, 'id'>){
     return this.http.post<ITask>(`${this.apiUrl}/tasks`, newTask).pipe(
       tap(newTask => {

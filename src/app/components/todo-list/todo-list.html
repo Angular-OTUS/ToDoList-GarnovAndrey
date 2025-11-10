@@ -1,0 +1,24 @@
+<app-toast></app-toast>
+<div class="filter">
+  <app-button-component class="button__filter" [ngClass]="{'button__filter__selected':filter === null}" (onClick)="selectFilter(null)">Все</app-button-component>
+  <app-button-component class="button__filter" [ngClass]="{'button__filter__selected':filter === 'InProgress'}" (onClick)="selectFilter('InProgress')">В работе</app-button-component>
+  <app-button-component class="button__filter" [ngClass]="{'button__filter__selected':filter === 'Completed'}" (onClick)="selectFilter('Completed')">Выполненные</app-button-component>
+</div>
+
+<div class="tasks">
+  <div class="list-tasks">
+    <ul>
+      @for(task of tasks(); track task.id ){
+        @if(task.status === filter || filter === null){
+          <li >
+            <div class="list-tasks__task" [routerLink]="[task.id]" routerLinkActive="task-selected">
+              <span appTooltip="{{task.description}}">{{task.title}}</span>
+              <input class="checkbox" type="checkbox" [checked]="task.status === 'Completed'" (change)="changeStatusTask(task)">
+            </div>
+          </li>
+        }
+      }
+    </ul>
+  </div>
+  <router-outlet />
+</div>

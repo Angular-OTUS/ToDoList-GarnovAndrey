@@ -17,24 +17,7 @@ li{
 }
 .list-tasks{
   flex: 1;
-}
-.sidebar{
-  border: none;
-  border-radius: 20px;
-  background-color: #242424;
-  margin: 14px 0px 14px 20px;
-  padding: 12px 20px;
-  width: 40%;
-  height: 100%;
-}
-
-.sidebar h2 {
-  margin-top: 0;
-}
-
-.description-content{
-  height: 100%;
-  margin-bottom: 12px;
+  min-width: 60%;
 }
 
 .list-tasks__task {
@@ -56,38 +39,6 @@ li{
   word-wrap: break-word;
   font-size: 16px;
   font-weight: 600;
-}
-
-.button__delete{
-  font-weight: 600;
-  --mat-button-filled-container-height: 49px;
-  @include mat.button-overrides((
-    filled-container-color: #FF5B5B,
-    filled-label-text-color: #411616
-  ));
-}
-
-// .editform{
-
-// }
-
-.edit-fields{
-  margin-bottom: 12px;
-}
-
-.edit-task-field{
-  color: #FFFFFF;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: 500;
-  border: 2px solid #313131;
-  border-radius: 20px;
-  background-color: #242424;
-  min-height: 30px;
-  width: 100%;
-  box-sizing: border-box;
-  resize: vertical;
-  scrollbar-color: #9f9f9f #2c2c2c;
 }
 
 .checkbox{
