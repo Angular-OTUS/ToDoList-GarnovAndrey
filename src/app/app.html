@@ -1,3 +1,64 @@
 <div class="container">
-  <router-outlet />
+  <div class="sidebar">
+    <div class="sidebar__logo">
+      <div class="logo">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_219_1051)">
+          <rect width="40" height="40" rx="6.5" fill="#2C2C2C"/>
+          <path d="M24.1021 40L10.6117 22.0861H6.96888V40H-0.456871V-0.991728H6.96888V15.8613H8.83032L23.4016 -0.991728H32.5487L16.3561 17.7027L33.2492 40H24.1021Z" fill="#C5FE4C"/>
+          </g>
+          <defs>
+          <clipPath id="clip0_219_1051">
+          <rect width="40" height="40" rx="6" fill="white"/>
+          </clipPath>
+          </defs>
+        </svg>
+      </div>
+      <span class="logo__text">Keen</span>
+    </div>
+    <div class="sidebar__menu">
+      <ul>
+        <li class="menu">
+          <div class="menu-container">
+            <div class="menu-dec"></div>
+            <div class="menu-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 3.33325H2.00667" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 8H2.00667" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12.6667H2.00667" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5.33398 3.33325H14.0007" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5.33398 8H14.0007" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5.33398 12.6667H14.0007" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
+            </div>
+            <span class="menu-text">Список задач</span>
+          </div>
+        </li>
+        <li class="menu">
+          <div class="menu-container">
+            <div class="menu-dec"></div>
+            <div class="menu-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6.66667V6" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 9.99992V9.33325" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 14.0001V12.6667" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 3.33333V2" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 6.66667V6" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 9.99992V9.33325" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 14.0001V12.6667" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 3.33333V2" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12.6667 2H3.33333C2.59695 2 2 2.59695 2 3.33333V12.6667C2 13.403 2.59695 14 3.33333 14H12.6667C13.403 14 14 13.403 14 12.6667V3.33333C14 2.59695 13.403 2 12.6667 2Z" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
+            </div>
+            <span class="menu-text">Доска</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="content-conteiner">
+    <router-outlet />
+  </div>
 </div>
