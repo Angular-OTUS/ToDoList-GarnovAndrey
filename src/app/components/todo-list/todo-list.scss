@@ -26,7 +26,8 @@ li{
   gap: 10px;
   margin-bottom: 8px;
   background-color: #242424;
-  border-radius: 20px;
+  border: 1px solid #303030;
+  border-radius: 8px;
   height: 73px;
   white-space: normal;
 }
@@ -63,28 +64,4 @@ li{
 
 .filter{
   display: flex;
-}
-
-.button__filter{
-  margin-left: 0.5rem;
-  font-weight: 600;
-  --mat-button-filled-container-height: 42px;
-  @include mat.button-overrides((
-    filled-container-color: #242424,
-    filled-label-text-color: #CDCDCD
-  ));
-}
-
-.button__filter:hover{
-  @include mat.button-overrides((
-    filled-container-color: #FFFFFF,
-    filled-label-text-color: #101010
-  ));
-}
-
-.button__filter__selected{
-  @include mat.button-overrides((
-    filled-container-color: #FFFFFF,
-    filled-label-text-color: #101010
-  ));
 }

@@ -2,9 +2,9 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'tasks',
+    path: 'backlog',
     loadComponent: () => import('./components/todo-list-page').then(c => c.ToDoListPage),
-    title: 'Tasks',
+    title: 'Backlog',
     pathMatch: 'prefix',
     children: [
       {
@@ -14,13 +14,20 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'board',
+    loadComponent: () => import('./components/todo-list-page').then(c => c.ToDoListPage),
+    title: 'Board',
+    pathMatch: 'prefix',
+  },
+  {
     path: '',
-    redirectTo: 'tasks',
+    // title: 'TasksBoard',
+    redirectTo: 'tasksBoard',
     pathMatch: 'prefix'
   },
   {
     path: '**',
-    redirectTo: 'tasks',
+    redirectTo: 'tasksBoard',
     pathMatch: 'prefix'
   }
 ];
