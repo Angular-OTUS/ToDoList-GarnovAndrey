@@ -9,5 +9,5 @@ import { RouterLinkActive, RouterLinkWithHref, RouterOutlet } from '@angular/rou
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('toDoList');
+  protected readonly title = signal('tasksBoard');
 }

@@ -85,7 +85,7 @@ export class ToDoItem implements OnInit {
       next: () => {
         this.selectedTask = null;
         this.toastService.success('Задача удалена!');
-        this.#router.navigate(['']);
+        this.#router.navigate(['/backlog']);
       }, error: (error) => {
       this.toastService.error(`Ошибка ответа API: ${error.message}`);
       }

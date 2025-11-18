@@ -62,7 +62,8 @@ ul{
   }
 }
 
-.menu-active{
+.menu-active,
+.menu-active:hover{
   margin-bottom: 10px;
   border-radius: 8px;
   gap: 10px;

@@ -3,19 +3,19 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: 'backlog',
-    loadComponent: () => import('./components/todo-list-page').then(c => c.ToDoListPage),
+    loadComponent: () => import('./pages/backlog').then(c => c.BacklogPage),
     title: 'Backlog',
     pathMatch: 'prefix',
     children: [
       {
         path: ':id',
-        loadComponent: () => import('./components/todo-item').then(c => c.ToDoItem)
+        loadComponent: () => import('./pages/backlog/todo-item').then(c => c.ToDoItem)
       }
     ]
   },
   {
     path: 'board',
-    loadComponent: () => import('./components/todo-list-page').then(c => c.ToDoListPage),
+    loadComponent: () => import('./pages/board').then(c => c.BoardPage),
     title: 'Board',
     pathMatch: 'prefix',
   },

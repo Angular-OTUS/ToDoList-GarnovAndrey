@@ -1,12 +1,12 @@
 import { Component, DestroyRef, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ITask, StatusTask } from '../../models/task.model';
+import { ITask, StatusTask } from '../../../models/task.model';
 import {MatButtonModule} from '@angular/material/button';
-import { TooltipDirective } from '../../directives';
-import { TasksService } from '../../services/tasks';
-import { Toast } from "../../components/toast/toast";
-import { ToastService } from '../../services/toast';
+import { TooltipDirective } from '../../../directives';
+import { TasksService } from '../../../services/tasks';
+import { Toast } from "../../../components/toast/toast";
+import { ToastService } from '../../../services/toast';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterOutlet, RouterLinkWithHref, RouterLinkActive } from '@angular/router';
 import { ButtonFilter } from "@app/shared/button-filter/button-filter";
