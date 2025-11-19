@@ -2,6 +2,12 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: '',
+    // title: 'TasksBoard',
+    redirectTo: 'tasksBoard',
+    pathMatch: 'prefix'
+  },
+  {
     path: 'backlog',
     loadComponent: () => import('./pages/backlog').then(c => c.BacklogPage),
     title: 'Backlog',
@@ -18,12 +24,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/board').then(c => c.BoardPage),
     title: 'Board',
     pathMatch: 'prefix',
-  },
-  {
-    path: '',
-    // title: 'TasksBoard',
-    redirectTo: 'tasksBoard',
-    pathMatch: 'prefix'
   },
   {
     path: '**',
