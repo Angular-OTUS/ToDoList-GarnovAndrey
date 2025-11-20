@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { filterStatusColorDecor } from '@app/models/filter.model';
 import { StatusTask } from '@app/models/task.model';
 
 @Component({
@@ -11,9 +12,9 @@ import { StatusTask } from '@app/models/task.model';
 })
 export class ButtonFilter {
 
-  public filterBtnSelected = input<boolean>(false);
+  public filterBtnSelected = input(false);
   public filterStatus = input<StatusTask | null>(null);
-  public disabledState = input<boolean>(false);
+  public disabledState = input(false);
   public onClick = output<void>();
 
   public onClickBtn() {
@@ -25,9 +26,9 @@ export class ButtonFilter {
   public filterStatusColor(filterStatus: StatusTask | null): string {
     switch(filterStatus){
       case 'InProgress':
-        return '#4CBAFE';
+        return filterStatusColorDecor.InProgress;
       case 'Completed':
-        return '#C5FE4C';
+        return filterStatusColorDecor.Completed;
       default:
         return '';
     }
