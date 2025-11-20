@@ -11,7 +11,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   templateUrl: './board-page.html',
   styleUrl: './board-page.scss'
 })
-export class BoardPage implements OnInit{
+export class BoardPage {
 
 
   private readonly tasksService = inject(TasksService);
@@ -19,23 +19,9 @@ export class BoardPage implements OnInit{
 
   private destroyRef = inject(DestroyRef)
 
-  public pendingTask: ITask[] = [];
-  public inProgressTask: ITask[] = [];
-  public doneTask: ITask[] = [];
-
-  ngOnInit(): void {
-    this.tasksService.tasks$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
-      next: (tasks) =>{
-        this.pendingTask = tasks.filter(task => task.status === 'Pending');
-        this.inProgressTask = tasks.filter(task => task.status === 'InProgress');
-        this.doneTask = tasks.filter(task => task.status === 'Completed');
-      },error: (error) =>{
-        const messageError = `Ошибка ответа API: ${error.message}`;
-        this.toastService.error(messageError);
-      }
-    });
-  }
-
+  public pendingTask = this.tasksService.pendingTask;
+  public inProgressTask = this.tasksService.inProgressTask;
+  public doneTask = this.tasksService.doneTask;
 
   drop(event: CdkDragDrop<ITask[]>) {
     if (event.previousContainer === event.container) {

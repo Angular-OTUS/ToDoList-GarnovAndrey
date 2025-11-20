@@ -4,12 +4,12 @@
     <div cdkDropList
       id="pendingListId"
       #pendingList="cdkDropList"
-      [cdkDropListData]="pendingTask"
+      [cdkDropListData]="pendingTask()"
       [cdkDropListConnectedTo]="[inProgressList]"
       class="board-list"
       (cdkDropListDropped)="drop($event)"
     >
-    @for (task of pendingTask; track task) {
+    @for (task of pendingTask(); track task) {
       <div class="board-container__box" cdkDrag>
         {{task.title}}
       </div>
@@ -21,12 +21,12 @@
     <div cdkDropList
       id="inProgressListId"
       #inProgressList="cdkDropList"
-      [cdkDropListData]="inProgressTask"
+      [cdkDropListData]="inProgressTask()"
       [cdkDropListConnectedTo]="[pendingList, doneList]"
       class="board-list"
       (cdkDropListDropped)="drop($event)"
     >
-      @for (task of inProgressTask; track task) {
+      @for (task of inProgressTask(); track task) {
       <div class="board-container__box" cdkDrag>
         {{task.title}}
       </div>
@@ -38,12 +38,12 @@
     <div cdkDropList
       id="doneListId"
       #doneList="cdkDropList"
-      [cdkDropListData]="doneTask"
+      [cdkDropListData]="doneTask()"
       [cdkDropListConnectedTo]="[pendingList, inProgressList]"
       class="board-list"
       (cdkDropListDropped)="drop($event)"
     >
-      @for (task of doneTask; track task) {
+      @for (task of doneTask(); track task) {
         <div class="board-container__box" cdkDrag>
           {{task.title}}
         </div>

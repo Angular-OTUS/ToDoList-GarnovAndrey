@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { ITask } from '../models/task.model';
-import { BehaviorSubject, retry, tap } from 'rxjs';
+import { BehaviorSubject, catchError, of, retry, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { ToastService } from './toast';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,15 @@ export class TasksService {
   private apiUrl: string = "http://localhost:3000";
   private tasksSubject = new BehaviorSubject<ITask[]>([]);
   public tasks$ = this.tasksSubject.asObservable();
+  public toastService = inject(ToastService);
+
+  public pendingTask = signal<ITask[]>([]);
+  public inProgressTask = signal<ITask[]>([]);
+  public doneTask = signal<ITask[]>([]);
 
   constructor(private http: HttpClient) {
     this.getTasks();
+    this.groupingTask();
   }
 
   public getTasks(){
@@ -50,5 +57,18 @@ export class TasksService {
         this.tasksSubject.next(this.tasksSubject.value.filter(task => task.id !== idTask));
       })
     );
+  }
+
+  public groupingTask() {
+    this.tasks$.pipe(tap((tasks) => {
+      this.pendingTask.set(tasks.filter(task => task.status === 'Pending'));
+      this.inProgressTask.set(tasks.filter(task => task.status === 'InProgress'));
+      this.doneTask.set(tasks.filter(task => task.status === 'Completed'));
+    }),
+    catchError(error => {
+        const messageError = `Ошибка ответа API: ${error.message}`;
+        this.toastService.error(messageError);
+        return of([])
+    })).subscribe()
   }
 }
