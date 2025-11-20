@@ -1,8 +1,8 @@
 <h1 class="titel-page">Список задач</h1>
-<app-todo-create-item></app-todo-create-item>
+<app-todo-create-item />
 <hr class="dashed-line">
 @if(isLoading()){
-  <app-loading></app-loading>
+  <app-loading />
 }@else{
   <app-todo-list [tasks]="tasks()" />
 }
