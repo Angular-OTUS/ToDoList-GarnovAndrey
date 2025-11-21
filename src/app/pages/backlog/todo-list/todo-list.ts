@@ -1,19 +1,19 @@
 import { Component, DestroyRef, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ITask, StatusTask } from '../../models/task.model';
+import { ITask, StatusTask } from '../../../models/task.model';
 import {MatButtonModule} from '@angular/material/button';
-import { ButtonComponent } from '@shared';
-import { TooltipDirective } from '../../directives';
-import { TasksService } from '../../services/tasks';
-import { Toast } from "../toast/toast";
-import { ToastService } from '../../services/toast';
+import { TooltipDirective } from '../../../directives';
+import { TasksService } from '../../../services/tasks';
+import { Toast } from "../../../components/toast/toast";
+import { ToastService } from '../../../services/toast';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterOutlet, RouterLinkWithHref, RouterLinkActive } from '@angular/router';
+import { ButtonFilter } from "@app/shared/button-filter/button-filter";
 
 @Component({
   selector: 'app-todo-list',
-  imports: [CommonModule, FormsModule, MatButtonModule, ButtonComponent, TooltipDirective, Toast, RouterOutlet, RouterLinkWithHref, RouterLinkActive],
+  imports: [CommonModule, FormsModule, MatButtonModule, ButtonFilter, TooltipDirective, Toast, RouterOutlet, RouterLinkWithHref, RouterLinkActive, ButtonFilter],
   templateUrl: './todo-list.html',
   styleUrl: './todo-list.scss'
 })

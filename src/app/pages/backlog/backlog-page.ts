@@ -3,25 +3,25 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ITaskState } from '../../models/task.model';
 import { MatButtonModule } from '@angular/material/button';
-import { ToDoList } from '../todo-list/todo-list';
 import { LoadingComponent } from '@shared';
 import { TasksService } from '../../services/tasks';
 import { catchError, map, Observable, of, startWith } from 'rxjs';
-import { TodoCreateItem } from '../todo-create-item/todo-create-item';
+import { TodoCreateItem } from '@app/pages/backlog/todo-create-item/todo-create-item'
 import { ToastService } from '@app/services/toast';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ToDoList } from '@app/pages/backlog/todo-list';
 
 
 
 @Component({
-  selector: 'app-todo-list-page',
+  selector: 'app-backlog-page',
   imports: [CommonModule, FormsModule, ToDoList, MatButtonModule, LoadingComponent, TodoCreateItem],
-  templateUrl: './todo-list-page.html',
-  styleUrl: './todo-list-page.scss'
+  templateUrl: './backlog-page.html',
+  styleUrl: './backlog-page.scss'
 })
 
 
-export class ToDoListPage {
+export class BacklogPage {
   private readonly toastService = inject(ToastService);
   private readonly tasksService = inject(TasksService);
 

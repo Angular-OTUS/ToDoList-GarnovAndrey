@@ -1,0 +1,53 @@
+<div class="board-container">
+  <div class="board-container__column">
+    <h2>Задачи</h2>
+    <div cdkDropList
+      id="pendingListId"
+      #pendingList="cdkDropList"
+      [cdkDropListData]="pendingTask()"
+      [cdkDropListConnectedTo]="[inProgressList]"
+      class="board-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+    @for (task of pendingTask(); track task) {
+      <div class="board-container__box" cdkDrag>
+        {{task.title}}
+      </div>
+    }
+    </div>
+  </div>
+  <div class="board-container__column">
+    <h2>В работе</h2>
+    <div cdkDropList
+      id="inProgressListId"
+      #inProgressList="cdkDropList"
+      [cdkDropListData]="inProgressTask()"
+      [cdkDropListConnectedTo]="[pendingList, doneList]"
+      class="board-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      @for (task of inProgressTask(); track task) {
+      <div class="board-container__box" cdkDrag>
+        {{task.title}}
+      </div>
+    }
+    </div>
+  </div>
+  <div class="board-container__column">
+    <h2>Выполненные</h2>
+    <div cdkDropList
+      id="doneListId"
+      #doneList="cdkDropList"
+      [cdkDropListData]="doneTask()"
+      [cdkDropListConnectedTo]="[pendingList, inProgressList]"
+      class="board-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      @for (task of doneTask(); track task) {
+        <div class="board-container__box" cdkDrag>
+          {{task.title}}
+        </div>
+      }
+    </div>
+  </div>
+</div>

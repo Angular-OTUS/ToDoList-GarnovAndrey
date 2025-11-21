@@ -1,0 +1,43 @@
+@use '@angular/material' as mat;
+
+.btn-content{
+  display: flex;
+  align-items: center;
+}
+
+.button__filter{
+  border: none;
+  margin-left: 0.5rem;
+  font-weight: 600;
+  --mat-button-filled-container-height: 39px;
+  @include mat.button-overrides((
+    filled-container-color: #242424,
+    filled-label-text-color: #CDCDCD
+  ));
+  --mat-button-filled-container-shape: 8px;
+  --mat-button-filled-label-text-font: Arial;
+}
+
+.button__filter:hover{
+  @include mat.button-overrides((
+    filled-container-color: #242424,
+    filled-label-text-color: #C5FE4C
+  ));
+}
+
+.button__filter__selected{
+  @include mat.button-overrides((
+    filled-container-color: #242424,
+    filled-label-text-color: #C5FE4C
+  ));
+    border: 1px solid #C5FE4C;
+  border-radius: 8px;
+}
+
+.filter-status-color{
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 20px;
+  margin-right: 12px;
+}

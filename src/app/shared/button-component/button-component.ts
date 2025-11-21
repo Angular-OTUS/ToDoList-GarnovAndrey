@@ -10,7 +10,7 @@ import {MatButtonModule} from '@angular/material/button';
 export class ButtonComponent {
 
   public disabledState = input<boolean>(false);
- public onClick = output<void>();
+  public onClick = output<void>();
 
   onClickBtn() {
     if(!this.disabledState()){

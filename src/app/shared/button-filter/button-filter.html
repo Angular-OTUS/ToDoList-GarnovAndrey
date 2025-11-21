@@ -1,0 +1,10 @@
+
+<button class="button__filter" [disabled]="disabledState()" [class.button__filter__selected]="filterBtnSelected()" (click)="onClickBtn()" matButton="filled">
+  <div class="btn-content">
+    @let status = filterStatus();
+    @if(status){
+      <span class="filter-status-color" [style.background-color]="filterStatusColor(status)"></span>
+    }
+    <ng-content />
+  </div>
+</button>

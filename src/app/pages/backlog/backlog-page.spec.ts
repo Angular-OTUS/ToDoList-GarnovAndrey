@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ToDoList } from './todo-list-page';
+import { BacklogPage } from './backlog-page';
 
 describe('ToDoList', () => {
-  let component: ToDoList;
-  let fixture: ComponentFixture<ToDoList>;
+  let component: BacklogPage;
+  let fixture: ComponentFixture<BacklogPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ToDoList]
+      imports: [BacklogPage]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ToDoList);
+    fixture = TestBed.createComponent(BacklogPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

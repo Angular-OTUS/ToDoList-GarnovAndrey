@@ -2,25 +2,32 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'tasks',
-    loadComponent: () => import('./components/todo-list-page').then(c => c.ToDoListPage),
-    title: 'Tasks',
+    path: '',
+    // title: 'TasksBoard',
+    redirectTo: 'tasksBoard',
+    pathMatch: 'prefix'
+  },
+  {
+    path: 'backlog',
+    loadComponent: () => import('./pages/backlog').then(c => c.BacklogPage),
+    title: 'Backlog',
     pathMatch: 'prefix',
     children: [
       {
         path: ':id',
-        loadComponent: () => import('./components/todo-item').then(c => c.ToDoItem)
+        loadComponent: () => import('./pages/backlog/todo-item').then(c => c.ToDoItem)
       }
     ]
   },
   {
-    path: '',
-    redirectTo: 'tasks',
-    pathMatch: 'prefix'
+    path: 'board',
+    loadComponent: () => import('./pages/board').then(c => c.BoardPage),
+    title: 'Board',
+    pathMatch: 'prefix',
   },
   {
     path: '**',
-    redirectTo: 'tasks',
+    redirectTo: 'tasksBoard',
     pathMatch: 'prefix'
   }
 ];

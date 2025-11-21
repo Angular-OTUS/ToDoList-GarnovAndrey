@@ -1,8 +1,8 @@
 <app-toast></app-toast>
 <div class="filter">
-  <app-button-component class="button__filter" [ngClass]="{'button__filter__selected':filter === null}" (onClick)="selectFilter(null)">Все</app-button-component>
-  <app-button-component class="button__filter" [ngClass]="{'button__filter__selected':filter === 'InProgress'}" (onClick)="selectFilter('InProgress')">В работе</app-button-component>
-  <app-button-component class="button__filter" [ngClass]="{'button__filter__selected':filter === 'Completed'}" (onClick)="selectFilter('Completed')">Выполненные</app-button-component>
+  <app-button-filter [filterBtnSelected]="filter === null" (onClick)="selectFilter(null)">Все</app-button-filter>
+  <app-button-filter [filterBtnSelected]="filter === 'InProgress'" [filterStatus]="'InProgress'" (onClick)="selectFilter('InProgress')">В работе</app-button-filter>
+  <app-button-filter [filterBtnSelected]="filter === 'Completed'" [filterStatus]="'Completed'" (onClick)="selectFilter('Completed')">Выполненные</app-button-filter>
 </div>
 
 <div class="tasks">

@@ -5,9 +5,9 @@ import { TooltipDirective } from '@app/directives';
 import { TasksService } from '@app/services/tasks';
 import { ToastService } from '@app/services/toast';
 import { ButtonComponent } from '@shared'
-import { Toast } from '../toast/toast';
 import { ITaskNew } from '@app/models/task.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Toast } from '@app/components/toast/toast';
 
 @Component({
   selector: 'app-todo-create-item',
@@ -25,7 +25,7 @@ export class TodoCreateItem {
   public newTask?: ITaskNew;
 
   public addTask(): void{
-    this.newTask = {title: String(this.newTaskText), description: this.newTaskTextDescription, status: 'InProgress'};
+    this.newTask = {title: String(this.newTaskText), description: this.newTaskTextDescription, status:'Pending'};
     this.tasksService.addTask(this.newTask).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
         this.newTaskText = undefined;
