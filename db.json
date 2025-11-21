@@ -10,19 +10,25 @@
       "id": 2,
       "title": "Прочитать 10 отложенных статей по Angular",
       "description": "1 статья: Про хуки, 2 статья: про лучшие практики...",
-      "status": "Completed"
+      "status": "InProgress"
     },
     {
       "id": 3,
       "title": "Убраться на рабочем столе или в одной зоне дома",
       "description": "Убрать все лишнее с рабочего стола и освободить рабочую зону для комфортного время препровождения",
-      "status": "InProgress"
+      "status": "Completed"
     },
     {
       "title": "Сделать домашнюю работу № 8",
       "description": "Отправить на проверку",
       "status": "Pending",
       "id": 4
+    },
+    {
+      "title": "123",
+      "description": "123",
+      "status": "Pending",
+      "id": 5
     }
   ]
 }
