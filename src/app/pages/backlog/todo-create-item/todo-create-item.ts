@@ -31,9 +31,6 @@ export class TodoCreateItem {
         this.newTaskText = undefined;
         this.newTaskTextDescription = undefined;
         this.toastService.success('Задача добавлена!');
-      },
-      error: (error) => {
-      this.toastService.error(`Ошибка ответа API: ${error.message}`);
       }
     });
   }

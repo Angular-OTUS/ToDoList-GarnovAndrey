@@ -33,9 +33,6 @@ export class ToDoList {
     this.tasksService.changeTask(task).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
         this.toastService.success('Статус задачи обновлен!')
-      },
-      error: (error) => {
-      this.toastService.error(`Ошибка ответа API: ${error.message}`);
       }
     });
   }

@@ -34,6 +34,10 @@ export class TasksService {
     return this.http.post<ITask>(`${this.apiUrl}/tasks`, newTask).pipe(
       tap(newTask => {
         this.tasksSubject.next([...this.tasksSubject.value, newTask]);
+      }),catchError(error => {
+        const messageError = `Ошибка ответа API: ${error.message}`;
+        this.toastService.error(messageError);
+        return of()
       })
     );
   }
@@ -47,6 +51,10 @@ export class TasksService {
           update[checkChangedTaskIndex] = changedTask;
           this.tasksSubject.next(update);
         }
+      }),catchError(error => {
+        const messageError = `Ошибка ответа API: ${error.message}`;
+        this.toastService.error(messageError);
+        return of()
       })
     );
   }
@@ -55,6 +63,10 @@ export class TasksService {
     return this.http.delete<void>(`${this.apiUrl}/tasks/${idTask}`).pipe(
       tap(() => {
         this.tasksSubject.next(this.tasksSubject.value.filter(task => task.id !== idTask));
+      }),catchError(error => {
+        const messageError = `Ошибка ответа API: ${error.message}`;
+        this.toastService.error(messageError);
+        return of()
       })
     );
   }
