@@ -25,15 +25,12 @@ export class TodoCreateItem {
   public newTask?: ITaskNew;
 
   public addTask(): void{
-    this.newTask = {title: String(this.newTaskText), description: this.newTaskTextDescription, status:'Pending'};
+    this.newTask = {title: String(this.newTaskText), description: this.newTaskTextDescription, status:'NewTask'};
     this.tasksService.addTask(this.newTask).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
         this.newTaskText = undefined;
         this.newTaskTextDescription = undefined;
         this.toastService.success('Задача добавлена!');
-      },
-      error: (error) => {
-      this.toastService.error(`Ошибка ответа API: ${error.message}`);
       }
     });
   }

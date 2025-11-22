@@ -10,10 +10,12 @@ import { ToastService } from '../../../services/toast';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterOutlet, RouterLinkWithHref, RouterLinkActive } from '@angular/router';
 import { ButtonFilter } from "@app/shared/button-filter/button-filter";
+import { TranslateStatusPipe } from '@app/pipes/translateStatus';
+import { filterStatusColorDecor } from '@app/models/filter.model';
 
 @Component({
   selector: 'app-todo-list',
-  imports: [CommonModule, FormsModule, MatButtonModule, ButtonFilter, TooltipDirective, Toast, RouterOutlet, RouterLinkWithHref, RouterLinkActive, ButtonFilter],
+  imports: [CommonModule, FormsModule, MatButtonModule, ButtonFilter, TooltipDirective, Toast, RouterOutlet, RouterLinkWithHref, RouterLinkActive, ButtonFilter, TranslateStatusPipe],
   templateUrl: './todo-list.html',
   styleUrl: './todo-list.scss'
 })
@@ -33,9 +35,6 @@ export class ToDoList {
     this.tasksService.changeTask(task).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
         this.toastService.success('Статус задачи обновлен!')
-      },
-      error: (error) => {
-      this.toastService.error(`Ошибка ответа API: ${error.message}`);
       }
     });
   }
@@ -43,4 +42,17 @@ export class ToDoList {
   public selectFilter(selectStatus: StatusTask | null): void{
     this.filter = selectStatus;
   }
+
+  public filterStatusColor(filterStatus: StatusTask | null): string {
+      switch(filterStatus){
+        case 'NewTask':
+          return filterStatusColorDecor.NewTask;
+        case 'InProgress':
+          return filterStatusColorDecor.InProgress;
+        case 'Completed':
+          return filterStatusColorDecor.Completed;
+        default:
+          return '';
+      }
+    }
 }
