@@ -12,8 +12,8 @@
       @for(task of tasks(); track task.id ){
         @if(task.status === filter || filter === null){
           <li >
-            <div class="list-tasks__task" [routerLink]="[task.id]" routerLinkActive="task-selected">
-              <span appTooltip="{{task.description}}">{{task.title}}</span>
+            <div class="list-tasks__task" [routerLink]="[task.id]" routerLinkActive="task-selected" appTooltip="{{task.description}}">
+              <span>{{task.title}}</span>
               <span class="status-task" [style.color]="filterStatusColor(task.status)">{{task.status | translateStatus}}</span>
             </div>
           </li>
