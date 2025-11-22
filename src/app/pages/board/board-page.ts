@@ -37,7 +37,7 @@ export class BoardPage {
       const dropTask = event.container.data[event.currentIndex];
       switch(event.container.id){
         case 'pendingListId':
-          dropTask.status = 'Pending';
+          dropTask.status = 'NewTask';
         break;
         case 'inProgressListId':
           dropTask.status = 'InProgress';

@@ -19,16 +19,10 @@
       "status": "Completed"
     },
     {
-      "title": "Сделать домашнюю работу № 8",
-      "description": "Отправить на проверку",
-      "status": "Pending",
+      "title": "Сделать домашнюю работу №9",
+      "description": "Выполнить все пункты и сделать pull request",
+      "status": "NewTask",
       "id": 4
-    },
-    {
-      "title": "123",
-      "description": "123",
-      "status": "Pending",
-      "id": 5
     }
   ]
 }
