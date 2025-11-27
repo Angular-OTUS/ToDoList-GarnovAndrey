@@ -25,6 +25,8 @@ export class ButtonFilter {
 
   public filterStatusColor(filterStatus: StatusTask | null): string {
     switch(filterStatus){
+      case 'NewTask':
+        return filterStatusColorDecor.NewTask;
       case 'InProgress':
         return filterStatusColorDecor.InProgress;
       case 'Completed':

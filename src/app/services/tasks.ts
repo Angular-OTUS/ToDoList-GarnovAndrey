@@ -23,7 +23,7 @@ export class TasksService {
   }
 
   public getTasks(){
-    this.http.get<ITask[]>(`${this.apiUrl}/tasks`).subscribe(tasks => this.tasksSubject.next(tasks))
+    this.http.get<ITask[]>(`${this.apiUrl}/tasks`).subscribe(tasks => this.tasksSubject.next(tasks.reverse()))
   }
 
   public getTask(idTask: number){
@@ -33,7 +33,11 @@ export class TasksService {
   public addTask(newTask: Omit<ITask, 'id'>){
     return this.http.post<ITask>(`${this.apiUrl}/tasks`, newTask).pipe(
       tap(newTask => {
-        this.tasksSubject.next([...this.tasksSubject.value, newTask]);
+        this.tasksSubject.next([newTask, ...this.tasksSubject.value]);
+      }),catchError(error => {
+        const messageError = `Ошибка ответа API: ${error.message}`;
+        this.toastService.error(messageError);
+        return of()
       })
     );
   }
@@ -47,6 +51,10 @@ export class TasksService {
           update[checkChangedTaskIndex] = changedTask;
           this.tasksSubject.next(update);
         }
+      }),catchError(error => {
+        const messageError = `Ошибка ответа API: ${error.message}`;
+        this.toastService.error(messageError);
+        return of()
       })
     );
   }
@@ -55,13 +63,17 @@ export class TasksService {
     return this.http.delete<void>(`${this.apiUrl}/tasks/${idTask}`).pipe(
       tap(() => {
         this.tasksSubject.next(this.tasksSubject.value.filter(task => task.id !== idTask));
+      }),catchError(error => {
+        const messageError = `Ошибка ответа API: ${error.message}`;
+        this.toastService.error(messageError);
+        return of()
       })
     );
   }
 
   public groupingTask() {
     this.tasks$.pipe(tap((tasks) => {
-      this.pendingTask.set(tasks.filter(task => task.status === 'Pending'));
+      this.pendingTask.set(tasks.filter(task => task.status === 'NewTask'));
       this.inProgressTask.set(tasks.filter(task => task.status === 'InProgress'));
       this.doneTask.set(tasks.filter(task => task.status === 'Completed'));
     }),

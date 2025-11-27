@@ -1,13 +1,31 @@
+.titel-page{
+  margin: 0 0 36px 0;
+  font-size: 32px;
+  font-weight: 600;
+}
+.titel-column{
+  color: #303030;
+  font-size: 16px;
+  font-weight: 500;
+}
 .board-container{
   display: flex;
   justify-content: space-between;
+  height: 89%;
 }
 .board-container__column {
-  width: 400px;
+  width: 30%;
   max-width: 100%;
   margin: 0 25px 25px 0;
   display: inline-block;
   vertical-align: top;
+  border-left: 2px dashed #2B2B2B;
+  padding-left: 16px;
+  overflow: auto;
+}
+.board-container__column:last-child{
+  border-right: 2px dashed #2B2B2B;
+  padding-right: 16px;
 }
 .board-list {
   // border: solid 1px #ccc;

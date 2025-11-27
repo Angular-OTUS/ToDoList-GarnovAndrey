@@ -13,9 +13,16 @@
   margin-top: 0;
 }
 
-.description-content{
+.description-container{
   height: 100%;
   margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.description-content{
+  overflow: auto;
+  max-height: 200px;
 }
 
 .button__delete{

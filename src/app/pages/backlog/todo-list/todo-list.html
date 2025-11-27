@@ -1,6 +1,7 @@
 <app-toast></app-toast>
 <div class="filter">
   <app-button-filter [filterBtnSelected]="filter === null" (onClick)="selectFilter(null)">Все</app-button-filter>
+  <app-button-filter [filterBtnSelected]="filter === 'NewTask'" [filterStatus]="'NewTask'" (onClick)="selectFilter('NewTask')">Новые</app-button-filter>
   <app-button-filter [filterBtnSelected]="filter === 'InProgress'" [filterStatus]="'InProgress'" (onClick)="selectFilter('InProgress')">В работе</app-button-filter>
   <app-button-filter [filterBtnSelected]="filter === 'Completed'" [filterStatus]="'Completed'" (onClick)="selectFilter('Completed')">Выполненные</app-button-filter>
 </div>
@@ -11,9 +12,9 @@
       @for(task of tasks(); track task.id ){
         @if(task.status === filter || filter === null){
           <li >
-            <div class="list-tasks__task" [routerLink]="[task.id]" routerLinkActive="task-selected">
-              <span appTooltip="{{task.description}}">{{task.title}}</span>
-              <input class="checkbox" type="checkbox" [checked]="task.status === 'Completed'" (change)="changeStatusTask(task)">
+            <div class="list-tasks__task" [routerLink]="[task.id]" routerLinkActive="task-selected" appTooltip="{{task.description}}">
+              <span>{{task.title}}</span>
+              <span class="status-task" [style.color]="filterStatusColor(task.status)">{{task.status | translateStatus}}</span>
             </div>
           </li>
         }

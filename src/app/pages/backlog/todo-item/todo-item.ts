@@ -36,9 +36,6 @@ export class ToDoItem implements OnInit {
     ).subscribe({
       next: (data) => {
         this.selectedTask = data;
-      },
-      error: (error) => {
-        this.toastService.error(`Ошибка ответа API: ${error.message}`);
       }
     });
   }
@@ -47,9 +44,6 @@ export class ToDoItem implements OnInit {
     this.tasksService.getTask(idTask).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (data) => {
         this.selectedTask = data;
-      },
-      error: (error) => {
-      this.toastService.error(`Ошибка ответа API: ${error.message}`);
       }
     })
   }
@@ -72,9 +66,6 @@ export class ToDoItem implements OnInit {
           this.editTaskFlag = !this.editTaskFlag;
           this.selectedTask = this.changingTask;
           this.toastService.success('Задача обновлена!')
-        },
-        error: (error) => {
-        this.toastService.error(`Ошибка ответа API: ${error.message}`);
         }
       });
     }
@@ -86,8 +77,6 @@ export class ToDoItem implements OnInit {
         this.selectedTask = null;
         this.toastService.success('Задача удалена!');
         this.#router.navigate(['/backlog']);
-      }, error: (error) => {
-      this.toastService.error(`Ошибка ответа API: ${error.message}`);
       }
     });
   }
