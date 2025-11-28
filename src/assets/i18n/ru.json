@@ -1,0 +1,49 @@
+{
+  "APP": {
+    "BACKLOG": "Список задач",
+    "BOARD": "Доска"
+  },
+  "BACKLOG": {
+    "HEADER": "Список задач"
+  },
+  "TODO-LIST": {
+    "FILTER": {
+      "ALL": "Все",
+      "NEW": "Новые",
+      "IN-PROGRESS": "В работе",
+      "COMPLETED": "Выполненные"
+    },
+    "TASK-STATUS": {
+      "NewTask": "Новая",
+      "InProgress": "В работе",
+      "Completed": "Выполнена"
+    }
+  },
+  "TODO-ITEM": {
+    "DESCRIPTION": "Описание",
+    "BUTTON": {
+      "DELETE": "Удалить",
+      "SAVE": "Сохранить"
+    },
+    "TEXTAREA": {
+      "PLACEHOLDER": "Редактировать задачу"
+    }
+  },
+  "TODO-CREATE-ITEM": {
+    "INPUT": {
+      "PLACEHOLDER": "Добавь новую задачу"
+    },
+    "BUTTON": {
+      "TOOLTIP": "Добавляет новую задачу",
+      "ADD": "Добавить"
+    }
+  },
+  "BOARD": {
+    "HEADER": "Доска",
+    "COLUMN": {
+      "NEW": "Новые",
+      "IN-PROGRESS": "В работе",
+      "COMPLETED": "Выполненные"
+    }
+  }
+}

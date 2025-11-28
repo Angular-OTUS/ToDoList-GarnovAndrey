@@ -10,12 +10,13 @@ import { TodoCreateItem } from '@app/pages/backlog/todo-create-item/todo-create-
 import { ToastService } from '@app/services/toast';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ToDoList } from '@app/pages/backlog/todo-list';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
 @Component({
   selector: 'app-backlog-page',
-  imports: [CommonModule, FormsModule, ToDoList, MatButtonModule, LoadingComponent, TodoCreateItem],
+  imports: [CommonModule, FormsModule, ToDoList, MatButtonModule, LoadingComponent, TodoCreateItem, TranslateModule],
   templateUrl: './backlog-page.html',
   styleUrl: './backlog-page.scss'
 })

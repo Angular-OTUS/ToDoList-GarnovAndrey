@@ -8,10 +8,11 @@ import { ButtonComponent } from '@shared'
 import { ITaskNew } from '@app/models/task.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Toast } from '@app/components/toast/toast';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-todo-create-item',
-  imports: [CommonModule, FormsModule, ButtonComponent, TooltipDirective, Toast],
+  imports: [CommonModule, FormsModule, ButtonComponent, TooltipDirective, Toast, TranslateModule],
   templateUrl: './todo-create-item.html',
   styleUrl: './todo-create-item.scss'
 })

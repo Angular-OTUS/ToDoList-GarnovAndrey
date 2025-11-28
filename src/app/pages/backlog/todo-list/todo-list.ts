@@ -10,12 +10,12 @@ import { ToastService } from '../../../services/toast';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterOutlet, RouterLinkWithHref, RouterLinkActive } from '@angular/router';
 import { ButtonFilter } from "@app/shared/button-filter/button-filter";
-import { TranslateStatusPipe } from '@app/pipes/translateStatus';
 import { filterStatusColorDecor } from '@app/models/filter.model';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-todo-list',
-  imports: [CommonModule, FormsModule, MatButtonModule, ButtonFilter, TooltipDirective, Toast, RouterOutlet, RouterLinkWithHref, RouterLinkActive, ButtonFilter, TranslateStatusPipe],
+  imports: [CommonModule, FormsModule, MatButtonModule, ButtonFilter, TooltipDirective, Toast, RouterOutlet, RouterLinkWithHref, RouterLinkActive, ButtonFilter, TranslateModule],
   templateUrl: './todo-list.html',
   styleUrl: './todo-list.scss'
 })

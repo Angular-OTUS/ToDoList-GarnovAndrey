@@ -7,11 +7,12 @@ import { ITask } from '@app/models/task.model';
 import { TasksService } from '@app/services/tasks';
 import { ToastService } from '@app/services/toast';
 import { ButtonComponent } from '@app/shared';
+import { TranslateModule } from '@ngx-translate/core';
 import { switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-todo-item',
-  imports: [CommonModule, FormsModule, ButtonComponent],
+  imports: [CommonModule, FormsModule, ButtonComponent, TranslateModule],
   templateUrl: './todo-item.html',
   styleUrl: './todo-item.scss'
 })
