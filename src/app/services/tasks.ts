@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { ITask } from '../models/task.model';
-import { BehaviorSubject, catchError, of, retry, tap } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ToastService } from './toast';
 
@@ -34,10 +34,6 @@ export class TasksService {
     return this.http.post<ITask>(`${this.apiUrl}/tasks`, newTask).pipe(
       tap(newTask => {
         this.tasksSubject.next([newTask, ...this.tasksSubject.value]);
-      }),catchError(error => {
-        const messageError = `Ошибка ответа API: ${error.message}`;
-        this.toastService.error(messageError);
-        return of()
       })
     );
   }
@@ -51,10 +47,6 @@ export class TasksService {
           update[checkChangedTaskIndex] = changedTask;
           this.tasksSubject.next(update);
         }
-      }),catchError(error => {
-        const messageError = `Ошибка ответа API: ${error.message}`;
-        this.toastService.error(messageError);
-        return of()
       })
     );
   }
@@ -63,10 +55,6 @@ export class TasksService {
     return this.http.delete<void>(`${this.apiUrl}/tasks/${idTask}`).pipe(
       tap(() => {
         this.tasksSubject.next(this.tasksSubject.value.filter(task => task.id !== idTask));
-      }),catchError(error => {
-        const messageError = `Ошибка ответа API: ${error.message}`;
-        this.toastService.error(messageError);
-        return of()
       })
     );
   }
@@ -76,11 +64,6 @@ export class TasksService {
       this.pendingTask.set(tasks.filter(task => task.status === 'NewTask'));
       this.inProgressTask.set(tasks.filter(task => task.status === 'InProgress'));
       this.doneTask.set(tasks.filter(task => task.status === 'Completed'));
-    }),
-    catchError(error => {
-        const messageError = `Ошибка ответа API: ${error.message}`;
-        this.toastService.error(messageError);
-        return of([])
     })).subscribe()
   }
 }

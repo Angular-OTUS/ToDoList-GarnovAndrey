@@ -1,0 +1,57 @@
+{
+  "APP": {
+    "BACKLOG": "List of tasks",
+    "BOARD": "Board",
+    "ALT-LOGO": "Logo",
+    "ALT-ICON_LIST": "List icon",
+    "ALT-ICON-BOARD": "Board icon"
+  },
+  "BACKLOG": {
+    "HEADER": "List of tasks"
+  },
+  "TODO-LIST": {
+    "FILTER": {
+      "ALL": "All",
+      "NEW": "New",
+      "IN-PROGRESS": "In progress",
+      "COMPLETED": "Completed"
+    },
+    "TASK-STATUS": {
+      "NewTask": "New",
+      "InProgress": "In progress",
+      "Completed": "Completed"
+    }
+  },
+  "TODO-ITEM": {
+    "DESCRIPTION": "Description",
+    "BUTTON": {
+      "DELETE": "Delete",
+      "SAVE": "Save"
+    },
+    "TEXTAREA": {
+      "PLACEHOLDER": "Edit task"
+    }
+  },
+  "TODO-CREATE-ITEM": {
+    "INPUT": {
+      "PLACEHOLDER": "Add a new task"
+    },
+    "BUTTON": {
+      "TOOLTIP": "Adds a new task",
+      "ADD": "Add"
+    }
+  },
+  "BOARD": {
+    "HEADER": "Board",
+    "COLUMN": {
+      "NEW": "New",
+      "IN-PROGRESS": "In progress",
+      "COMPLETED": "Completed"
+    }
+  },
+  "HTTP-ERROR": {
+    "ERROR": "Error",
+    "ERROR-SERVER": "Error server",
+    "DEFAULT-ERROR": "An error has occurred"
+  }
+}

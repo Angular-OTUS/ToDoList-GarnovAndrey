@@ -4,10 +4,11 @@ import { ITask } from '@app/models/task.model';
 import { TasksService } from '@app/services/tasks';
 import { ToastService } from '@app/services/toast';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-board-page',
-  imports: [CdkDropList, CdkDrag],
+  imports: [CdkDropList, CdkDrag, TranslateModule],
   templateUrl: './board-page.html',
   styleUrl: './board-page.scss'
 })
