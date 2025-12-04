@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterLinkActive, RouterLinkWithHref, RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { language } from './models/language.model';
+import { Language } from './models/language.model';
 
 
 @Component({
@@ -13,19 +13,19 @@ import { language } from './models/language.model';
 export class App {
   protected readonly title = signal('tasksBoard');
 
-  public btnLang: language = "RU";
+  public btnLang: Language = "RU";
 
   constructor(private translate: TranslateService) {
     this.translate.setFallbackLang('en');
-
     const browserLang = this.translate.getBrowserLang();
     this.translate.use(browserLang?.match(/en|ru/) ? browserLang : 'en');
+    this.btnLang = browserLang?.match(/en|ru/)? browserLang.toUpperCase() as Language : 'EN';
   }
 
   switchLang(){
     const currentLang = this.translate.getCurrentLang()
     let newLang = currentLang == 'ru'? 'en' : 'ru';
-    this.btnLang = newLang.toUpperCase() as language;
+    this.btnLang = newLang.toUpperCase() as Language;
     this.translate.use(newLang);
   }
 }

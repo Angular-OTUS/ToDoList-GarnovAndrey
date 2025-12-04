@@ -1,7 +1,10 @@
 {
   "APP": {
     "BACKLOG": "Список задач",
-    "BOARD": "Доска"
+    "BOARD": "Доска",
+    "ALT-LOGO": "Логотип",
+    "ALT-ICON-LIST": "Иконка спика",
+    "ALT-ICON-BOARD": "Иконка доски"
   },
   "BACKLOG": {
     "HEADER": "Список задач"
@@ -45,5 +48,10 @@
       "IN-PROGRESS": "В работе",
       "COMPLETED": "Выполненные"
     }
+  },
+  "HTTP-ERROR": {
+    "ERROR": "Ошибка",
+    "ERROR-SERVER": "Ошибка сервера",
+    "DEFAULT-ERROR": "Произошла ошибка"
   }
 }

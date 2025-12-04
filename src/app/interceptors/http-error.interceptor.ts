@@ -2,17 +2,19 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpHandlerFn, HttpIntercept
 import { inject } from "@angular/core";
 import { ToastService } from "@app/services/toast";
 import { catchError, Observable, throwError } from "rxjs";
+import { TranslateService } from '@ngx-translate/core';
 
 export function HttpErrorInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
-  let toastService = inject(ToastService)
+  const toastService = inject(ToastService);
+  const translateService = inject (TranslateService);
     return next(req).pipe(
       catchError((error: HttpErrorResponse) => {
-        let errorMessage = 'Произошла ошибка';
+        let errorMessage = translateService.instant('HTTP-ERROR.DEFAULT-ERROR');
 
         if (error.error instanceof ErrorEvent) {
-          errorMessage = `Ошибка: ${error.error.message}`;
+          errorMessage = `${translateService.instant('HTTP-ERROR.ERROR')}: ${error.error.message}`;
         } else {
-          errorMessage = `Ошибка сервера: ${error.status} - ${error.message}`;
+          errorMessage = `${translateService.instant('HTTP-ERROR.ERROR-SERVER')}: ${error.status} - ${error.message}`;
         }
 
         toastService.error(errorMessage);

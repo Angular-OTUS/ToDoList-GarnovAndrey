@@ -1,7 +1,10 @@
 {
   "APP": {
     "BACKLOG": "List of tasks",
-    "BOARD": "Board"
+    "BOARD": "Board",
+    "ALT-LOGO": "Logo",
+    "ALT-ICON_LIST": "List icon",
+    "ALT-ICON-BOARD": "Board icon"
   },
   "BACKLOG": {
     "HEADER": "List of tasks"
@@ -45,5 +48,10 @@
       "IN-PROGRESS": "In progress",
       "COMPLETED": "Completed"
     }
+  },
+  "HTTP-ERROR": {
+    "ERROR": "Error",
+    "ERROR-SERVER": "Error server",
+    "DEFAULT-ERROR": "An error has occurred"
   }
 }

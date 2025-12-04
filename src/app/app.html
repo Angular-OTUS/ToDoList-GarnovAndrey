@@ -3,7 +3,7 @@
     <div class="sidebar-header">
       <div class="sidebar__logo">
         <div class="logo">
-          <img src="assets/logo.svg" alt="Логотип" >
+          <img src="assets/logo.svg" [alt]="'APP.ALT-LOG' | translate" >
         </div>
         <span class="logo__text">Keen</span>
       </div>
@@ -17,7 +17,7 @@
           <div class="menu-container">
             <div class="menu-dec"></div>
             <div class="menu-icon">
-              <img src="assets/list-icon.svg" alt="Иконка спика">
+              <img src="assets/list-icon.svg" [alt]="'APP.ALT-ICON-LIST' | translate">
             </div>
             <span class="menu-text">{{ 'APP.BACKLOG' | translate}}</span>
           </div>
@@ -26,7 +26,7 @@
           <div class="menu-container">
             <div class="menu-dec"></div>
             <div class="menu-icon">
-              <img src="assets/board-icon.svg" alt="Иконка доски">
+              <img src="assets/board-icon.svg" [alt]="'APP.ALT-ICON-BOARD' | translate">
             </div>
             <span class="menu-text">{{ 'APP.BOARD' | translate}}</span>
           </div>
